@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import SpinWheel from "./Components/SpinWheel";
 
 class App extends Component {
   state = {
@@ -27,43 +26,40 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <p>Hi, My name is Kyler Figgins</p>
-          <img
-            src={logo}
-            className="App-logo"
-            alt="logo"
-            style={{
-              animationDirection: this.state.direction,
-              animation: `App-logo-spin infinite ${this.state.speed}s linear`
-            }}
-          />
-          <p>And I'm a Front-End Developer</p>
-          <a
-            className="App-link"
-            onClick={this.toggleDirection}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Reverse
-          </a>
-          <a
-            className="App-link"
-            onClick={this.speedUp}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="fas fa-caret-up" />
-          </a>
-          <a
-            className="App-link"
-            onClick={this.slowDown}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="fas fa-caret-down" />
-          </a>
+          <h1>Kyler Figgins</h1>
         </header>
-        <SpinWheel speed={this.state.speed} direction={this.state.direction} />
+        <div className="App-body">
+          <p>Full-Stack React Developer who likes clean sites</p>
+          <br />
+          <p>
+            <a href="#">Components</a>
+          </p>
+          <p>
+            <a href="#">Blog</a>
+          </p>
+          <p>
+            <a href="#">Sites</a>
+          </p>
+          <p>
+            <a href="https://www.linkedin.com/in/kylerfiggins">Contact</a>
+          </p>
+          <br />
+          <br />
+        </div>
+        <div className="App-footer">
+          <a target="_blank" href="https://twitter.com/Kfiggins1">
+            <i className="fab fa-twitter" style={{ color: "#293241", margin: "10px" }} />
+          </a>
+          <a target="_blank" href="https://www.linkedin.com/in/kylerfiggins">
+            <i
+              className="fab fa-linkedin-in"
+              style={{ color: "#293241", margin: "10px" }}
+            />
+          </a>
+          <a target="_blank" href="https://github.com/kfiggins">
+            <i className="fab fa-github" style={{ color: "#293241", margin: "10px" }} />
+          </a>
+        </div>
       </div>
     );
   }
