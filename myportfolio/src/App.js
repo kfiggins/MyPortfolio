@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
+import HideShow from "./components/shared/HideShow";
+
 class App extends Component {
   state = {
     direction: "reverse",
@@ -31,6 +33,15 @@ class App extends Component {
         <div className="App-body">
           <p>Full-Stack React Developer who likes clean sites</p>
           <br />
+          <HideShow>
+            {({ on, hide, show }) => (
+              <div>
+                {on && <h1>Hello</h1>}
+                <button onClick={show}>Show</button>
+                <button onClick={hide}>Hide</button>
+              </div>
+            )}
+          </HideShow>
           <p>
             <a href="#">Components</a>
           </p>
