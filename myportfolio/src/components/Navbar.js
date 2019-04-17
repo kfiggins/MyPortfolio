@@ -8,7 +8,7 @@ export default function Navbar() {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #293241;
   `;
 
   const NavItem = styled.li`
@@ -23,7 +23,7 @@ export default function Navbar() {
     text-decoration: none;
 
     :hover {
-      background-color: #111;
+      background-color: #3e4654;
     }
   `;
 

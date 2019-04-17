@@ -1,22 +1,25 @@
 import React, { Component, Fragment } from "react";
 import styled from "styled-components";
 
-import Navbar from "./Navbar";
+import ComponentMenu from "./ComponentMenu";
+
+// Components
 import HideShow from "./shared/HideShow";
 
 export default class Components extends Component {
   render() {
     const Wrapper = styled.div`
-      padding: 10em;
+      display: flex;
+      padding: 1em;
     `;
     return (
       <Fragment>
-        <Navbar />
+        <ComponentMenu />
         <Wrapper>
           <HideShow>
             {({ on, hide, show }) => (
               <div>
-                <p>Show/Hide Component</p>
+                <h2>Show/Hide Component</h2>
                 <button onClick={show}>Show</button>
                 <button onClick={hide}>Hide</button>
                 {on && (
