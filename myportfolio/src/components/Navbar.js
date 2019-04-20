@@ -36,13 +36,13 @@ export default function Navbar() {
         <StyledLink to="/components">Components</StyledLink>
       </NavItem>
       <NavItem>
-        <StyledLink>Blog</StyledLink>
+        <StyledLink to="/">Blog</StyledLink>
       </NavItem>
       <NavItem>
-        <StyledLink>Sites</StyledLink>
+        <StyledLink to="/">Sites</StyledLink>
       </NavItem>
       <NavItem>
-        <StyledLink>Contact</StyledLink>
+        <StyledLink to="/">Contact</StyledLink>
       </NavItem>
     </Nav>
   );

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import HideShow from "./shared/HideShow";
 
 import ComponentMenuItem from "./ComponentMenuItem";
 
@@ -15,7 +16,7 @@ export default class ComponentMenu extends Component {
     `;
 
     const components = [
-      { name: "Show/Hide" },
+      { name: "HideShow" },
       { name: "2nd Component" },
       { name: "3rd Component" },
       { name: "4th Component" },
@@ -27,7 +28,7 @@ export default class ComponentMenu extends Component {
         <h3>Component Library</h3>
         <ul>
           {components.map(x => (
-            <ComponentMenuItem name={x.name} />
+            <ComponentMenuItem key={x.name} name={x.name} />
           ))}
         </ul>
       </Wrapper>

@@ -1,5 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function ComponentMenuItem({ name }) {
-  return <li>{name}</li>;
+  return (
+    <li>
+      <Link to={`/components/${name}`}>{name}</Link>
+    </li>
+  );
 }
