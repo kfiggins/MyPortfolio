@@ -14,15 +14,7 @@ export default class ComponentMenu extends Component {
       float: left;
       padding-left: 15px;
     `;
-
-    const components = [
-      { name: "HideShow" },
-      { name: "2nd Component" },
-      { name: "3rd Component" },
-      { name: "4th Component" },
-      { name: "5th Component" }
-    ];
-
+    const { components } = this.props;
     return (
       <Wrapper>
         <h3>Component Library</h3>

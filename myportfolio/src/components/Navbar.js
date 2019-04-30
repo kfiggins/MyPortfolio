@@ -39,9 +39,6 @@ export default function Navbar() {
         <StyledLink to="/">Blog</StyledLink>
       </NavItem>
       <NavItem>
-        <StyledLink to="/">Sites</StyledLink>
-      </NavItem>
-      <NavItem>
         <StyledLink to="/">Contact</StyledLink>
       </NavItem>
     </Nav>

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import styled from "styled-components";
 
 import "./App.css";
@@ -13,9 +13,10 @@ class App extends Component {
     return (
       <Router>
         <Navbar />
-
-        <Route exact path="/" component={Home} />
-        <Route path="/components" component={Components} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/components" component={Components} />
+        </Switch>
       </Router>
     );
   }
