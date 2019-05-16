@@ -27,6 +27,19 @@ export default function Navbar() {
     }
   `;
 
+  // TODO: look at combining the two styles.
+  const StyledAnchor = styled.a`
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+
+    :hover {
+      background-color: #3e4654;
+    }
+  `;
+
   return (
     <Nav>
       <NavItem>
@@ -36,10 +49,12 @@ export default function Navbar() {
         <StyledLink to="/components">Components</StyledLink>
       </NavItem>
       <NavItem>
-        <StyledLink to="/">Blog</StyledLink>
+        <StyledLink to="/blog">Blog</StyledLink>
       </NavItem>
       <NavItem>
-        <StyledLink to="/">Contact</StyledLink>
+        <StyledAnchor href="https://www.linkedin.com/in/kylerfiggins">
+          Contact
+        </StyledAnchor>
       </NavItem>
     </Nav>
   );

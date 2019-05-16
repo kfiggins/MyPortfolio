@@ -7,6 +7,7 @@ import "./App.css";
 import Home from "./components/Home";
 import Components from "./components/Components";
 import Navbar from "./components/Navbar";
+import BlogPlaceHolder from "./components/BlogPlaceHolder";
 
 class App extends Component {
   render() {
@@ -16,6 +17,7 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/components" component={Components} />
+          <Route path="/blog" component={BlogPlaceHolder} />
         </Switch>
       </Router>
     );
