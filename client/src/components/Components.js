@@ -13,13 +13,13 @@ export default class Components extends Component {
   render() {
     const Wrapper = styled.div`
       display: flex;
-      padding: 1em;
+      padding: 1em 2em;
     `;
 
     const componentMenu = [
       { name: "HideShow" },
       { name: "Field" },
-      { name: "3rd Component" }
+      { name: "More Coming Soon" }
     ];
 
     return (

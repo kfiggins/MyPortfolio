@@ -5,7 +5,7 @@ export default function ComponentHome() {
   const Wrapper = styled.div`
     display: flex;
     justify-content: center;
-    width: 40em;
+    width: 50em;
   `;
 
   return (
@@ -17,8 +17,8 @@ export default function ComponentHome() {
           component I'm planning on adding tutorials on how to use the component and
           explain how I am making them.🐱‍👤
         </p>
-        <p>⬅ Get started by clicking on a component in the menu to the left </p>
-        <p>I'm going to try really hard to not over use emoji's.🤪</p>
+        <p>⬅ Get started by clicking on a component in the menu to the left. </p>
+        <p>I'm going to try really hard to not overuse emoji's.🤪</p>
       </div>
     </Wrapper>
   );

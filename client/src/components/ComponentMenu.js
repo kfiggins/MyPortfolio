@@ -1,28 +1,42 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import HideShow from "./shared/HideShow";
+import { Link } from "react-router-dom";
 
 import ComponentMenuItem from "./ComponentMenuItem";
 
 export default class ComponentMenu extends Component {
   render() {
     const Wrapper = styled.div`
-      min-width: 15em;
-      border-right: 1px #bebebe solid;
+      min-width: 20em;
+      border-right: 2px #3e4654 solid;
       height: calc(100vh - 49px);
       position: relative;
       float: left;
-      padding-left: 15px;
+      padding-top: 1em;
+      text-align: center;
     `;
+
+    const NonStyledLink = styled(Link)`
+      text-decoration: none;
+      color: #3e4654;
+
+      &:hover {
+        color: #3e4654;
+        text-decoration: none;
+      }
+    `;
+
     const { components } = this.props;
     return (
       <Wrapper>
-        <h3>Component Library</h3>
-        <ul>
+        <NonStyledLink to={`/components/`}>
+          <h1>Components</h1>
+        </NonStyledLink>
+        <div>
           {components.map(x => (
             <ComponentMenuItem key={x.name} name={x.name} />
           ))}
-        </ul>
+        </div>
       </Wrapper>
     );
   }
