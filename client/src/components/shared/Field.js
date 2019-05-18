@@ -19,7 +19,7 @@ const Input = styled.input`
 export default function Field({ label, name, type }) {
   return (
     <Fragment>
-      {label && <Label for={name}>{label}</Label>}
+      {label && <Label htmlFor={name}>{label}</Label>}
       <Input id={name} type={type} />
     </Fragment>
   );

@@ -52,6 +52,9 @@ export default function Navbar() {
         <StyledLink to="/blog">Blog</StyledLink>
       </NavItem>
       <NavItem>
+        <StyledLink to="/todo">To-Do App</StyledLink>
+      </NavItem>
+      <NavItem>
         <StyledAnchor href="https://www.linkedin.com/in/kylerfiggins">
           Contact
         </StyledAnchor>

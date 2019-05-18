@@ -5,6 +5,7 @@ export default function ButtonExample() {
   return (
     <div>
       <h1>Buttons 🦑</h1>
+      <p>I like buttons. Who doesn't like buttons?</p>
       <Button primary>Primary</Button>
       <br />
       <br />

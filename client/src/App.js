@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import Components from "./components/Components";
 import Navbar from "./components/Navbar";
 import BlogPlaceHolder from "./components/BlogPlaceHolder";
+import TodoApp from "./components/todoApp/TodoApp";
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route path="/components" component={Components} />
           <Route path="/blog" component={BlogPlaceHolder} />
+          <Route path="/todo" component={TodoApp} />
         </Switch>
       </Router>
     );
