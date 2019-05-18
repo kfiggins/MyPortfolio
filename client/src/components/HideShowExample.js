@@ -1,5 +1,6 @@
 import React from "react";
 import HideShow from "./shared/HideShow";
+import Button from "./shared/Button";
 
 export default function HideShowExample() {
   return (
@@ -11,16 +12,12 @@ export default function HideShowExample() {
           <p>
             You can easily show or hide anything you want with this easy to use component.
           </p>
-          <button
-            style={{ marginRight: "5px" }}
-            className="btn btn-success"
-            onClick={show}
-          >
+          <Button style={{ marginRight: "5px" }} onClick={show} success>
             Show
-          </button>
-          <button className="btn btn-danger" onClick={hide}>
+          </Button>
+          <Button onClick={hide} danger>
             Hide
-          </button>
+          </Button>
           {on && (
             <div>
               <br />
