@@ -7,7 +7,7 @@ export default function HideShowExample() {
     <HideShow>
       {({ on, hide, show }) => (
         <div>
-          <h1>Show/Hide Component</h1>
+          <h1>Show/Hide Component {on ? <span>🙉</span> : <span>🙈</span>}</h1>
           <p>This component is using the render props pattern.</p>
           <p>
             You can easily show or hide anything you want with this easy to use component.

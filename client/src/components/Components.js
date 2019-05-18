@@ -19,7 +19,7 @@ export default class Components extends Component {
 
     const componentMenu = [
       { name: "Button" },
-      { name: "HideShow" },
+      { name: "ShowHide" },
       { name: "Field" },
       { name: "More Coming Soon" }
     ];
@@ -31,7 +31,7 @@ export default class Components extends Component {
           <Switch>
             <Route exact path="/components" component={ComponentHome} />
             <Route path="/components/Button" component={ButtonExample} />
-            <Route path="/components/HideShow" component={HideShowExample} />
+            <Route path="/components/ShowHide" component={HideShowExample} />
             <Route path="/components/Field" component={FieldExample} />
           </Switch>
         </Wrapper>

@@ -4,7 +4,7 @@ import Button from "./shared/Button";
 export default function ButtonExample() {
   return (
     <div>
-      <h1>Buttons</h1>
+      <h1>Buttons 🦑</h1>
       <Button primary>Primary</Button>
       <br />
       <br />
