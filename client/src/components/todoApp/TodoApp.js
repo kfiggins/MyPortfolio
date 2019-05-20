@@ -4,8 +4,6 @@ import { generateId } from "../../utils/GenerateId";
 import styled from "styled-components";
 
 import TodoItem from "./TodoItem";
-import TodoCompletedItems from "./TodoCompletedItems";
-import TodoCurrentItems from "./TodoCurrentItems";
 
 export default function TodoApp() {
   const Wrapper = styled.div`
@@ -13,13 +11,14 @@ export default function TodoApp() {
   `;
 
   const [todos, setTodos] = useState([
-    { id: generateId(), text: "Learn how to use React Hooks", completed: true },
-    { id: generateId(), text: "Learn how to fly", completed: false }
+    { id: generateId(), text: "Learn how to use React Hooks 🎣", completed: true },
+    { id: generateId(), text: "Learn how to fly 🛸", completed: false }
   ]);
 
   const [todoField, updateToDoField] = useState("");
 
   const addTodo = () => {
+    if (!todoField) return;
     setTodos([{ id: generateId(), text: todoField, completed: false }, ...todos]);
     updateToDoField("");
   };
@@ -62,18 +61,28 @@ export default function TodoApp() {
       <Button style={{ marginLeft: "10px" }} success onClick={addTodo}>
         Add To-Do
       </Button>
-      <h3>To-Do's</h3>
-      <TodoCurrentItems
-        currentTodos={currentTodos}
-        removeTodo={removeTodo}
-        toggleTodo={toggleTodo}
-      />
 
-      <TodoCompletedItems
-        completedTodos={completedTodos}
-        removeTodo={removeTodo}
-        toggleTodo={toggleTodo}
-      />
+      <h3>To-Do's</h3>
+      {currentTodos.map(todo => (
+        <TodoItem
+          todo={todo}
+          removeTodo={removeTodo}
+          toggleTodo={toggleTodo}
+          key={todo.id}
+        />
+      ))}
+
+      <h3>Completed Items</h3>
+      <div style={{ opacity: ".5" }}>
+        {completedTodos.map(todo => (
+          <TodoItem
+            todo={todo}
+            removeTodo={removeTodo}
+            toggleTodo={toggleTodo}
+            key={todo.id}
+          />
+        ))}
+      </div>
     </div>
   );
 }

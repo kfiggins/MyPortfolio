@@ -49,10 +49,10 @@ export default function Navbar() {
         <StyledLink to="/components">Components</StyledLink>
       </NavItem>
       <NavItem>
-        <StyledLink to="/blog">Blog</StyledLink>
+        <StyledLink to="/todo">To-Do App</StyledLink>
       </NavItem>
       <NavItem>
-        <StyledLink to="/todo">To-Do App</StyledLink>
+        <StyledLink to="/blog">Blog</StyledLink>
       </NavItem>
       <NavItem>
         <StyledAnchor href="https://www.linkedin.com/in/kylerfiggins">
