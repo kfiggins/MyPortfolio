@@ -52,6 +52,9 @@ export default function Navbar() {
         <StyledLink to="/todo">To-Do App</StyledLink>
       </NavItem>
       <NavItem>
+        <StyledLink to="/kanban">Kanban</StyledLink>
+      </NavItem>
+      <NavItem>
         <StyledLink to="/blog">Blog</StyledLink>
       </NavItem>
       <NavItem>

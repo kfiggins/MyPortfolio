@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "../shared/Button";
 import { generateId } from "../../utils/GenerateId";
 import styled from "styled-components";
@@ -6,14 +6,17 @@ import styled from "styled-components";
 import TodoItem from "./TodoItem";
 
 export default function TodoApp() {
-  const Wrapper = styled.div`
-    text-align: center;
-  `;
+  const initialTodos = JSON.parse(window.localStorage.getItem("todos"));
+  const [todos, setTodos] = useState(
+    initialTodos || [
+      { id: generateId(), text: "Learn how to use React Hooks 🎣", completed: true },
+      { id: generateId(), text: "Learn how to fly 🛸", completed: false }
+    ]
+  );
 
-  const [todos, setTodos] = useState([
-    { id: generateId(), text: "Learn how to use React Hooks 🎣", completed: true },
-    { id: generateId(), text: "Learn how to fly 🛸", completed: false }
-  ]);
+  useEffect(() => {
+    window.localStorage.setItem("todos", JSON.stringify(todos));
+  });
 
   const [todoField, updateToDoField] = useState("");
 
@@ -27,7 +30,6 @@ export default function TodoApp() {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
-  // TODO: Try using context with toggleTodo
   const toggleTodo = id => {
     const todo = todos.find(todo => todo.id === id);
     todo.completed = !todo.completed;

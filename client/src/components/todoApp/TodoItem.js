@@ -31,7 +31,7 @@ export default function TodoItem({ todo, removeTodo, toggleTodo }) {
   return (
     <Wrapper key={todo.id}>
       <CheckboxPosition>
-        {/* Make a pretty checkbox component */}
+        {/* TODO: Make a pretty checkbox component */}
         <input
           type="checkbox"
           checked={todo.completed}
