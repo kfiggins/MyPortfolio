@@ -7,10 +7,10 @@ export default function Column({
   name,
   headerColor,
   cards,
-  columnPostion,
+  columnPosition,
   addCard,
-  moveCardRight,
-  moveCardLeft
+  moveCard,
+  deleteCard
 }) {
   const Wrapper = styled.div`
     flex-grow: 1;
@@ -32,7 +32,7 @@ export default function Column({
     let text = prompt("test");
     const card = {
       title: text,
-      position: columnPostion
+      position: columnPosition
     };
     addCard(card);
   };
@@ -43,13 +43,7 @@ export default function Column({
         <h4>{name}</h4>
       </ColumnTitle>
       {cards.map(card => (
-        <Card
-          title={card.title}
-          key={card.title}
-          moveCardRight={moveCardRight}
-          moveCardLeft={moveCardLeft}
-          id={card.id}
-        />
+        <Card card={card} key={card.id} moveCard={moveCard} deleteCard={deleteCard} />
       ))}
       <button onClick={handleAddCard}>Add Card</button>
     </Wrapper>
