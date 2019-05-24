@@ -8,7 +8,7 @@ import Components from "./components/Components";
 import Navbar from "./components/Navbar";
 import BlogPlaceHolder from "./components/BlogPlaceHolder";
 import TodoApp from "./components/todoApp/TodoApp";
-import KanbanApp from "./components/KanbanApp/KanbanApp";
+import KanbanApp from "./components/kanbanApp/KanbanApp";
 
 class App extends Component {
   render() {
