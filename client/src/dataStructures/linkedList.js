@@ -4,6 +4,10 @@
 // No waste of memory compared to array.
 // Sequential access is slow compared to array.
 // i.e. music playlist
+// Access: O(n)
+// Search: O(n)
+// Insertion: O(1)
+// Deletion: O(n)
 
 let Node = function(element) {
   this.element = element;
