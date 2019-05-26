@@ -1,5 +1,9 @@
 // Hash Table
 // Using ES6 Class's for this example.
+// A good hash function should spread out the values uniformly across range of keys
+// and be very fast.
+// Hash Tables are generally O(1) with the worst case scenario being O(n).
+// Worst case scenario usually comes from picking a bad hash function.
 
 // https://medium.freecodecamp.org/how-to-implement-a-simple-hash-table-in-javascript-cb3b9c1f2997
 let hash = require("string-hash");
@@ -14,9 +18,9 @@ class DumbMap {
 
     if (!this.list[index]) return undefined;
 
-    // Handle Collisions
     let result;
 
+    // Handle collisions by storing multiple pairs at the same index.
     this.list[index].forEach(pairs => {
       if (pairs[0] === x) {
         result = pairs[1];
