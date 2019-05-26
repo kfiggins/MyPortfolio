@@ -1,3 +1,8 @@
+// Queue
+// FIFO
+// You add to the end and take from the front
+// i.e. answering people on hold, waiting in a line
+
 let Queue = function() {
   this.items = [];
   this.count = 0;

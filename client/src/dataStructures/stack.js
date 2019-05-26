@@ -1,4 +1,7 @@
-// Implementing a Stack in JavaScript
+// Stack
+// LIFO
+// i.e. pancakes, back button on URL, call stack.
+
 let Stack = function() {
   this.items = [];
   this.count = 0;
