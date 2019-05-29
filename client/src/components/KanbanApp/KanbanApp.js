@@ -68,6 +68,8 @@ export default function Kanban() {
   };
 
   const deleteCard = id => {
+    let result = window.confirm("Are you sure you want to delete this card?");
+    if (!result) return;
     setCard(cards.filter(card => card.id !== id));
   };
 
@@ -86,9 +88,11 @@ export default function Kanban() {
   `;
 
   return (
-    <Fragment>
+    <div style={{ textAlign: "center" }}>
       {/* TODO: finish adding columns */}
       {/* <button onClick={addColumn}>Add Column</button> */}
+      <h1>🏄‍♂️ Simple Kanban Board 🍰</h1>
+
       <Wrapper>
         {columns.map(column => (
           <Column
@@ -103,6 +107,6 @@ export default function Kanban() {
           />
         ))}
       </Wrapper>
-    </Fragment>
+    </div>
   );
 }

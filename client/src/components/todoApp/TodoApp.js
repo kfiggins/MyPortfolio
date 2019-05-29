@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "../shared/Button";
 import { generateId } from "../../utils/GenerateId";
-import styled from "styled-components";
 
 import TodoItem from "./TodoItem";
 

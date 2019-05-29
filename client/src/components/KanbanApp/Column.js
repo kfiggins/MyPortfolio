@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Button from "../shared/Button";
 
 import Card from "./Card";
 
@@ -29,7 +30,8 @@ export default function Column({
   `;
 
   const handleAddCard = () => {
-    let text = prompt("test");
+    let text = prompt("Add text to create a card.");
+    if (text === null || text === "") return;
     const card = {
       title: text,
       position: columnPosition
@@ -45,7 +47,10 @@ export default function Column({
       {cards.map(card => (
         <Card card={card} key={card.id} moveCard={moveCard} deleteCard={deleteCard} />
       ))}
-      <button onClick={handleAddCard}>Add Card</button>
+      <br />
+      <Button small success onClick={handleAddCard}>
+        Add Card
+      </Button>
     </Wrapper>
   );
 }

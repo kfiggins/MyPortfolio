@@ -19,6 +19,9 @@ export default function ButtonExample() {
       <br />
       <br />
       <Button info>Info</Button>
+      <br />
+      <br />
+      <Button>Default</Button>
     </div>
   );
 }

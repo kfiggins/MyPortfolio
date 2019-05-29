@@ -8,13 +8,25 @@ export default function Button({
   danger,
   warning,
   info,
+  small,
   ...props
 }) {
   //TODO change the default to a light colored button
   // Default - Primary
-  let backgrondColor = "#293241";
-  let boxShadowColor = "#696f7a";
-  let hoverColor = "#3e4654";
+  let backgrondColor = "#c4c4c4";
+  let boxShadowColor = "#d5d5d5";
+  let hoverColor = "#c9c9c9";
+  let padding = "0.55rem";
+
+  if (small) {
+    padding = "0.2rem";
+  }
+
+  if (primary) {
+    backgrondColor = "#293241";
+    boxShadowColor = "#696f7a";
+    hoverColor = "#3e4654";
+  }
 
   if (success) {
     backgrondColor = "#567047";
@@ -43,7 +55,7 @@ export default function Button({
   const StyledButton = styled.button`
     background-color: ${backgrondColor};
     color: white;
-    padding: 0.55rem;
+    padding: ${padding};
     cursor: pointer;
     border: 2px solid transparent;
 
