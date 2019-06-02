@@ -9,13 +9,13 @@ let Queue = function() {
 };
 
 // Enqueue
-Queue.prototype.push = function(item) {
+Queue.prototype.enqueue = function(item) {
   this.items[this.count] = item;
   this.count++;
 };
 
 // Dequeue
-Queue.prototype.shift = function() {
+Queue.prototype.dequeue = function() {
   if (this.count === 0) return;
 
   let result = this.items[0];
@@ -24,4 +24,8 @@ Queue.prototype.shift = function() {
   return result;
 };
 
-let newQueue = new Queue();
+Queue.prototype.isEmpty = function() {
+  return this.items.length === 0;
+};
+
+module.exports = Queue;
