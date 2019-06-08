@@ -14,6 +14,7 @@ describe("Testing ===", () => {
 describe("Testing ==", () => {
   it("Test the falsy values, false, 0 and '' ", () => {
     expect(false == 0).toBe(true);
+    expect(false === 0).toBe(false);
     expect(0 == "").toBe(true);
     expect(false == "").toBe(true);
   });
