@@ -10,17 +10,18 @@ const Input = styled.input`
   width: 100%;
   border: 1px solid lightgray;
   border-radius: 5px;
+  margin: 7px 0;
 
   :focus {
     box-shadow: 0 0 1pt 0 red;
   }
 `;
 
-export default function Field({ label, name, type }) {
+export default function TextField({ label, name, ...inputProps }) {
   return (
     <Fragment>
       {label && <Label htmlFor={name}>{label}</Label>}
-      <Input id={name} type={type} />
+      <Input id={name} type="text" {...inputProps} />
     </Fragment>
   );
 }

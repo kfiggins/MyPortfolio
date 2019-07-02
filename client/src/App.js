@@ -1,5 +1,7 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "./App.css";
 
@@ -9,6 +11,10 @@ import Navbar from "./components/Navbar";
 import BlogPlaceHolder from "./components/BlogPlaceHolder";
 import TodoApp from "./components/todoApp/TodoApp";
 import KanbanApp from "./components/kanbanApp/KanbanApp";
+import GitHubRepoApp from "./components/gitHubRepoApp/GitHubRepoApp";
+
+// Set up toast
+toast.configure();
 
 class App extends Component {
   render() {
@@ -21,6 +27,7 @@ class App extends Component {
           <Route path="/blog" component={BlogPlaceHolder} />
           <Route path="/todo" component={TodoApp} />
           <Route path="/kanban" component={KanbanApp} />
+          <Route path="/gitHubRepo" component={GitHubRepoApp} />
         </Switch>
       </Router>
     );
