@@ -7,6 +7,8 @@ import Button from "../shared/Button";
 import { getRepos, getUserData } from "../../externalAPIs/github-api";
 import { toast } from "react-toastify";
 
+import { distanceInWordsToNow } from "date-fns";
+
 const Wrapper = styled.div`
   text-align: center;
   margin: 0 auto;
@@ -25,7 +27,7 @@ export default function GitHubRepoApp() {
       .catch(error => toast.error(`${gitHubUserName} username not found on GitHub`));
     getUserData(gitHubUserName).then(data => setGitHubUserData(data));
   };
-
+  const user = gitHubUserData.user;
   return (
     <Wrapper>
       <h1>GitHub Repos App</h1>
@@ -40,6 +42,19 @@ export default function GitHubRepoApp() {
       </Button>
       <br />
       <br />
+      {user && (
+        <React.Fragment>
+          <img src={user.avatar_url} alt="" />
+          <h2>Name: {user.name}</h2>
+          <p>{user.bio}</p>
+          <p>Number of public repos: {user.public_repos}</p>
+          <p>
+            Joined GitHub {distanceInWordsToNow(user.created_at, { addSuffix: true })}
+          </p>
+        </React.Fragment>
+      )}
+      <br />
+      <br />
       {gitHubUserRepos.length > 0 && gitHubUserRepos.map(repo => <div>{repo.name}</div>)}
       <br />
       <br />
@@ -49,9 +64,6 @@ export default function GitHubRepoApp() {
         <React.Fragment>
           <h2>User Data LOG</h2>
           {JSON.stringify(gitHubUserData.user, null, 2)}
-          {/* {gitHubUserRepos.map(repo => (
-            <div>{JSON.stringify(repo, null, 2)}</div>
-          ))} */}
         </React.Fragment>
       )}
       {gitHubUserRepos.length > 0 && (

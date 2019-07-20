@@ -1,27 +1,48 @@
 import React from "react";
-import HideShow from "./shared/HideShow";
+import styled from "styled-components";
+
 import Button from "./shared/Button";
+import HideShow from "./shared/HideShow";
+
+const ShowButton = styled(Button)`
+  margin-right: 5px;
+`;
+
+const CodeWrapper = styled.code`
+  white-space: pre;
+  color: black;
+`;
 
 export default function HideShowExample() {
   return (
     <HideShow>
       {({ on, hide, show }) => (
         <div>
-          <h1>Show/Hide Component {on ? <span>🙉</span> : <span>🙈</span>}</h1>
+          <h1>
+            Show/Hide Component{" "}
+            {on ? (
+              <span role="img" aria-label="monkeyOpen">
+                🙉
+              </span>
+            ) : (
+              <span role="img" aria-label="monkeyClosed">
+                🙈
+              </span>
+            )}
+          </h1>
           <p>This component is using the render props pattern.</p>
-          <p>
-            You can easily show or hide anything you want with this easy to use component.
-          </p>
-          <Button style={{ marginRight: "5px" }} onClick={show} success>
+          <p>You can easily show or hide anything you want with this easy to use component.</p>
+          <ShowButton onClick={show} success>
             Show
-          </Button>
+          </ShowButton>
           <Button onClick={hide} danger>
             Hide
           </Button>
           {on && (
             <div>
               <br />
-              <code style={{ whiteSpace: "pre", color: "black" }}>
+              {/*TODO: Figure out how to add syntax highlighting! */}
+              <CodeWrapper>
                 {`class HideShow extends Component {
   state = {
     on: false
@@ -48,11 +69,10 @@ export default function HideShowExample() {
 
 export default HideShow;
 `}
-              </code>
+              </CodeWrapper>
             </div>
           )}
           <br />
-          {/*TODO: Figure out how to add syntax highlighting! */}
         </div>
       )}
     </HideShow>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 import Button from "../shared/Button";
 import { generateId } from "../../utils/GenerateId";
 
@@ -13,11 +14,11 @@ export default function TodoApp() {
     ]
   );
 
+  const [todoField, updateToDoField] = useState("");
+
   useEffect(() => {
     window.localStorage.setItem("todos", JSON.stringify(todos));
-  });
-
-  const [todoField, updateToDoField] = useState("");
+  }, [todos]);
 
   const addTodo = () => {
     if (!todoField) return;
@@ -48,33 +49,49 @@ export default function TodoApp() {
   const completedTodos = todos.filter(todo => todo.completed === true);
   const currentTodos = todos.filter(todo => todo.completed === false);
 
+  const TodoInput = styled.input`
+    padding: 7px 4px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+  `;
+
+  const AddButton = styled(Button)`
+    margin-left: 10px;
+  `;
+
+  const CompletedItems = styled.div`
+    opacity: 0.5;
+  `;
+
   return (
     <div style={{ textAlign: "center" }}>
-      <h1>🐯 To-Do App using React Hooks 🐘</h1>
-      <input
-        style={{ padding: "7px 4px", border: "1px solid lightgray", borderRadius: "5px" }}
-        value={todoField}
+      <h1>
+        <span role="img" aria-label="tiger">
+          🐯
+        </span>{" "}
+        To-Do App using React Hooks{" "}
+        <span role="img" aria-label="elephant">
+          🐘
+        </span>
+      </h1>
+      <TodoInput
         name="todoText"
-        onChange={updateField}
-        placeholder="Add To-Do Here"
         onKeyDown={handleKeyDown}
+        placeholder="Add To-Do Here"
+        value={todoField}
+        onChange={updateField}
       />
-      <Button style={{ marginLeft: "10px" }} success onClick={addTodo}>
+      <AddButton success onClick={addTodo}>
         Add To-Do
-      </Button>
+      </AddButton>
 
       <h3>To-Do's</h3>
       {currentTodos.map(todo => (
-        <TodoItem
-          todo={todo}
-          removeTodo={removeTodo}
-          toggleTodo={toggleTodo}
-          key={todo.id}
-        />
+        <TodoItem todo={todo} removeTodo={removeTodo} toggleTodo={toggleTodo} key={todo.id} />
       ))}
 
       <h3>Completed Items</h3>
-      <div style={{ opacity: ".5" }}>
+      <CompletedItems>
         {completedTodos.map(todo => (
           <TodoItem
             todo={todo}
@@ -83,7 +100,7 @@ export default function TodoApp() {
             key={todo.id}
           />
         ))}
-      </div>
+      </CompletedItems>
     </div>
   );
 }

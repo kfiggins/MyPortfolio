@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
+import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
-import Home from "./components/Home";
-import Components from "./components/Components";
-import Navbar from "./components/Navbar";
 import BlogPlaceHolder from "./components/BlogPlaceHolder";
-import TodoApp from "./components/todoApp/TodoApp";
-import KanbanApp from "./components/kanbanApp/KanbanApp";
+import Components from "./components/Components";
 import GitHubRepoApp from "./components/gitHubRepoApp/GitHubRepoApp";
+import Home from "./components/Home";
+import KanbanApp from "./components/kanbanApp/KanbanApp";
+import Navbar from "./components/Navbar";
+import TodoApp from "./components/todoApp/TodoApp";
 
 // Set up toast
 toast.configure();
