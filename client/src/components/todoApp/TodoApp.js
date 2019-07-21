@@ -4,6 +4,21 @@ import Button from "../shared/Button";
 import { generateId } from "../../utils/GenerateId";
 
 import TodoItem from "./TodoItem";
+import TextField from "../../components/shared/TextField";
+
+const TodoInput = styled.input`
+  padding: 7px 4px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+`;
+
+const AddButton = styled(Button)`
+  margin-left: 10px;
+`;
+
+const CompletedItems = styled.div`
+  opacity: 0.5;
+`;
 
 export default function TodoApp() {
   const initialTodos = JSON.parse(window.localStorage.getItem("todos"));
@@ -36,10 +51,6 @@ export default function TodoApp() {
     setTodos([...todos.filter(todo => todo.id !== id), todo]);
   };
 
-  const updateField = e => {
-    updateToDoField(e.target.value);
-  };
-
   const handleKeyDown = e => {
     if (e.key === "Enter") {
       addTodo();
@@ -48,20 +59,6 @@ export default function TodoApp() {
 
   const completedTodos = todos.filter(todo => todo.completed === true);
   const currentTodos = todos.filter(todo => todo.completed === false);
-
-  const TodoInput = styled.input`
-    padding: 7px 4px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-  `;
-
-  const AddButton = styled(Button)`
-    margin-left: 10px;
-  `;
-
-  const CompletedItems = styled.div`
-    opacity: 0.5;
-  `;
 
   return (
     <div style={{ textAlign: "center" }}>
@@ -75,11 +72,10 @@ export default function TodoApp() {
         </span>
       </h1>
       <TodoInput
-        name="todoText"
         onKeyDown={handleKeyDown}
+        onChange={e => updateToDoField(e.target.value)}
         placeholder="Add To-Do Here"
         value={todoField}
-        onChange={updateField}
       />
       <AddButton success onClick={addTodo}>
         Add To-Do
