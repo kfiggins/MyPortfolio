@@ -25,6 +25,9 @@ const Footer = styled.div`
 const SocialIcon = styled.i`
   color: #293241;
   margin: 10px;
+  &:hover {
+    color: #ee6c4d;
+  }
 `;
 
 export default function Home() {

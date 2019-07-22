@@ -16,25 +16,25 @@ export default function Kanban() {
     {
       id: generateId(),
       title: "Bob",
-      headerColor: "#8E6E95",
+      headerColor: "#3d5a80",
       columnPosition: 1
     },
     {
       id: generateId(),
       title: "Kyler",
-      headerColor: "#39A59C",
+      headerColor: "#98c1d9",
       columnPosition: 2
     },
     {
       id: generateId(),
       title: "Derek",
-      headerColor: "#344759",
+      headerColor: "#293241",
       columnPosition: 3
     },
     {
       id: generateId(),
       title: "George",
-      headerColor: "#E8741E",
+      headerColor: "#ee6c4d",
       columnPosition: 4
     }
   ]);

@@ -8,15 +8,15 @@ const MenuItem = styled(Link)`
   display: block;
   text-decoration: none;
   font-size: 1.2em;
-  color: #3e4654;
+  color: #293241;
 
   &:first-child {
     border-top: #d8dadc solid 1px;
   }
 
   &:hover {
-    background-color: #fbfbfb;
-    color: #3e4654;
+    background-color: #ee6c4d;
+    color: white;
     text-decoration: none;
   }
 `;

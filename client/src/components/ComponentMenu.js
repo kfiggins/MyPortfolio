@@ -10,16 +10,15 @@ const Wrapper = styled.div`
   height: calc(100vh - 49px);
   position: relative;
   float: left;
-  padding-top: 1em;
   text-align: center;
 `;
 
 const NonStyledLink = styled(Link)`
   text-decoration: none;
-  color: #3e4654;
+  color: #293241;
 
   &:hover {
-    color: #3e4654;
+    color: #293241;
     text-decoration: none;
   }
 `;

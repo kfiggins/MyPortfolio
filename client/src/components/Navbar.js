@@ -21,7 +21,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 
   :hover {
-    background-color: #3e4654;
+    background-color: #ee6c4d;
   }
 `;
 
@@ -34,7 +34,7 @@ const StyledAnchor = styled.a`
   text-decoration: none;
 
   :hover {
-    background-color: #3e4654;
+    background-color: #ee6c4d;
   }
 `;
 export default function Navbar() {
