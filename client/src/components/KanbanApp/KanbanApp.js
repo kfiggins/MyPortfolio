@@ -1,11 +1,17 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { generateId } from "../../utils/GenerateId";
 
 import Column from "./Column";
+const Wrapper = styled.div`
+  text-align: center;
+`;
+const ColumnWrapper = styled.div`
+  display: flex;
+`;
 
 export default function Kanban() {
-  // Columns
+  // Initial Columns
   const [columns, setColumns] = useState([
     {
       id: generateId(),
@@ -33,7 +39,7 @@ export default function Kanban() {
     }
   ]);
 
-  // TODO: figure out how to handle colors and columnPosition
+  // TODO: figure out how to handle colors and columnPosition to add and remove columns
   const addColumn = () => {
     let column = {};
     let text = prompt("Title of new column?");
@@ -44,7 +50,7 @@ export default function Kanban() {
     setColumns([...columns, column]);
   };
 
-  // Cards
+  // Initial Cards
   const [cards, setCard] = useState(
     JSON.parse(window.localStorage.getItem("cards")) || [
       { id: generateId(), title: "card1", position: 1 },
@@ -83,17 +89,21 @@ export default function Kanban() {
     setCard([...cards.filter(card => card.id !== id), card]);
   };
 
-  const Wrapper = styled.div`
-    display: flex;
-  `;
-
   return (
-    <div style={{ textAlign: "center" }}>
+    <Wrapper>
       {/* TODO: finish adding columns */}
       {/* <button onClick={addColumn}>Add Column</button> */}
-      <h1>🏄‍♂️ Simple Kanban Board 🍰</h1>
+      <h1>
+        <span role="img" aria-label="surfer">
+          🏄‍♂️
+        </span>{" "}
+        Simple Kanban Board{" "}
+        <span role="img" aria-label="cake">
+          🍰
+        </span>
+      </h1>
 
-      <Wrapper>
+      <ColumnWrapper>
         {columns.map(column => (
           <Column
             key={column.id}
@@ -106,7 +116,7 @@ export default function Kanban() {
             deleteCard={deleteCard}
           />
         ))}
-      </Wrapper>
-    </div>
+      </ColumnWrapper>
+    </Wrapper>
   );
 }

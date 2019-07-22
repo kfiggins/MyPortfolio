@@ -4,7 +4,6 @@ import Button from "../shared/Button";
 import { generateId } from "../../utils/GenerateId";
 
 import TodoItem from "./TodoItem";
-import TextField from "../../components/shared/TextField";
 
 const TodoInput = styled.input`
   padding: 7px 4px;

@@ -1,8 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "../shared/Button";
 
+import Button from "../shared/Button";
 import Card from "./Card";
+
+const Wrapper = styled.div`
+  flex-grow: 1;
+  &:first-child {
+    margin-left: 25px;
+  }
+  margin-right: 25px;
+`;
 
 export default function Column({
   name,
@@ -13,14 +21,6 @@ export default function Column({
   moveCard,
   deleteCard
 }) {
-  const Wrapper = styled.div`
-    flex-grow: 1;
-    &:first-child {
-      margin-left: 25px;
-    }
-    margin-right: 25px;
-  `;
-
   const ColumnTitle = styled.div`
     background-color: ${headerColor};
     height: 30px;
@@ -30,6 +30,7 @@ export default function Column({
   `;
 
   const handleAddCard = () => {
+    // TODO: Add custom popup to handle new card
     let text = prompt("Add text to create a card.");
     if (text === null || text === "") return;
     const card = {

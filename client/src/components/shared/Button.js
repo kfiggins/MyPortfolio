@@ -11,8 +11,7 @@ export default function Button({
   small,
   ...props
 }) {
-  //TODO change the default to a light colored button
-  // Default - Primary
+  // Default
   let backgrondColor = "#c4c4c4";
   let boxShadowColor = "#d5d5d5";
   let hoverColor = "#c9c9c9";
