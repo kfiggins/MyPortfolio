@@ -1,18 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
-import TextField from "../shared/TextField";
-import Button from "../shared/Button";
-
-import { getRepos, getUserData } from "../../externalAPIs/github-api";
+import { distanceInWordsToNow } from "date-fns";
 import { toast } from "react-toastify";
 
-import { distanceInWordsToNow } from "date-fns";
+import { getRepos, getUserData } from "../../externalAPIs/github-api";
+
+import Button from "../shared/Button";
+import TextField from "../shared/TextField";
 
 const Wrapper = styled.div`
   text-align: center;
   margin: 0 auto;
-  width: 75%;
+  width: 80%;
 `;
 
 const UsernameInput = styled(TextField)`
@@ -24,27 +23,37 @@ const UserWrapper = styled.div`
 `;
 
 const UserDetails = styled.div`
-  /* border: black 1px solid;
-  border-radius: 10px; */
   padding: 20px;
   box-sizing: border-box;
-  min-width: 30%;
+  min-width: 40%;
+  text-align: left;
 `;
 
 const RepoDetails = styled.div`
   display: flex;
   flex-wrap: wrap;
+  overflow-y: scroll;
+  height: calc(100vh - 280px);
 `;
 
-const RepoItem = styled.div`
+const RepoItem = styled.a`
   padding: 10px;
-  border: black solid 1px;
+  border: #e8f0fe solid 1px;
   margin: 4px;
   border-radius: 15px;
   height: 4em;
   display: flex;
   align-items: center;
   position: relative;
+  min-width: 6em;
+  text-decoration: none;
+  color: #293241 !important;
+
+  &:hover {
+    background-color: #ee6c4d;
+    color: white !important;
+    cursor: pointer;
+  }
 `;
 
 const Stars = styled.span`
@@ -62,8 +71,8 @@ const UserImage = styled.img`
 export default function GitHubRepoApp() {
   const [gitHubUserName, setGitHubUserName] = useState("");
   const [gitHubUserData, setGitHubUserData] = useState({});
-  const [gitHubUserRepos, setGitHubUserRepos] = useState({});
-  const [errors, setErrors] = useState([]);
+  const [gitHubUserRepos, setGitHubUserRepos] = useState([]);
+  const [gitHubCustomStats, setGetHubCustomStats] = useState({});
 
   const handleGitHubSearch = () => {
     getRepos(gitHubUserName)
@@ -71,6 +80,15 @@ export default function GitHubRepoApp() {
       .catch(error => toast.error(`${gitHubUserName} username not found on GitHub`));
     getUserData(gitHubUserName).then(data => setGitHubUserData(data));
   };
+
+  useEffect(() => {
+    const totalStars = gitHubUserRepos.reduce((acc, curr) => {
+      return acc + curr.stargazers_count;
+    }, 0);
+
+    setGetHubCustomStats({ TotalStars: totalStars });
+  }, [gitHubUserRepos]);
+
   const user = gitHubUserData.user;
   return (
     <Wrapper>
@@ -96,31 +114,38 @@ export default function GitHubRepoApp() {
             </h3>
             <p>{user.bio}</p>
             <p>
-              <b>{user.public_repos}</b> public repos
+              <b>{user.public_repos}</b> Public Repos
             </p>
             <p>
               Joined GitHub <b>{distanceInWordsToNow(user.created_at, { addSuffix: true })}</b>
             </p>
+            <p>
+              <b>{gitHubCustomStats.TotalStars.toLocaleString()}</b> Total Stars
+            </p>
           </UserDetails>
           <RepoDetails>
             {gitHubUserRepos.length > 0 &&
-              gitHubUserRepos.map(repo => (
-                <RepoItem>
-                  {repo.stargazers_count > 0 && <Stars>{repo.stargazers_count} ⭐</Stars>}
-                  {repo.name}&nbsp;<b>{repo.language}</b>
-                </RepoItem>
-              ))}
+              gitHubUserRepos
+                .sort((a, b) => b.stargazers_count - a.stargazers_count)
+                .map(repo => (
+                  <RepoItem href={repo.html_url} target="_blank">
+                    {repo.stargazers_count > 0 && (
+                      <Stars>
+                        {repo.stargazers_count.toLocaleString()}{" "}
+                        <span role="img" aria-label="star">
+                          ⭐
+                        </span>
+                      </Stars>
+                    )}
+                    {repo.name}&nbsp;
+                    <span>{repo.language && <em>({repo.language})</em>}</span>
+                  </RepoItem>
+                ))}
           </RepoDetails>
         </UserWrapper>
       )}
-      <br />
-      <br />
-
-      <br />
-      <br />
-      <br />
       {/* Log for dev */}
-      {gitHubUserData.user && (
+      {/* {gitHubUserData.user && (
         <React.Fragment>
           <h2>User Data LOG</h2>
           {JSON.stringify(gitHubUserData.user, null, 2)}
@@ -133,7 +158,7 @@ export default function GitHubRepoApp() {
             <div>{JSON.stringify(repo, null, 2)}</div>
           ))}
         </React.Fragment>
-      )}
+      )}{" "} */}
     </Wrapper>
   );
 }

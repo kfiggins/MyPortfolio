@@ -9,6 +9,7 @@ export default function Button({
   warning,
   info,
   small,
+  inherit,
   ...props
 }) {
   // Default
@@ -19,6 +20,12 @@ export default function Button({
 
   if (small) {
     padding = "0.2rem";
+  }
+
+  if (inherit) {
+    backgrondColor = "inherit";
+    boxShadowColor = "inherit";
+    hoverColor = "inherit";
   }
 
   if (primary) {

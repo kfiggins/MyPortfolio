@@ -27,6 +27,9 @@ export default function Column({
     text-align: center;
     color: white;
     margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
   `;
 
   const handleAddCard = () => {
@@ -44,14 +47,13 @@ export default function Column({
     <Wrapper>
       <ColumnTitle>
         <h4>{name}</h4>
+        <Button small inherit onClick={handleAddCard}>
+          <i className="fas fa-plus" /> Add Card
+        </Button>
       </ColumnTitle>
       {cards.map(card => (
         <Card card={card} key={card.id} moveCard={moveCard} deleteCard={deleteCard} />
       ))}
-      <br />
-      <Button small success onClick={handleAddCard}>
-        Add Card
-      </Button>
     </Wrapper>
   );
 }

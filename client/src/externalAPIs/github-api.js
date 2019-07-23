@@ -5,6 +5,7 @@ const BASE_URL = "https://api.github.com";
 
 export { getRepos, getUserData };
 
+// TODO: the max per page is 100. Find a way to fetch all repos.
 function getRepos(username) {
   const url = `${BASE_URL}/users/${username}/repos?per_page=250`;
   return axios.get(url).then(response => response.data);
