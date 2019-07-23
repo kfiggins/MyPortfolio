@@ -6,10 +6,16 @@ import Card from "./Card";
 
 const Wrapper = styled.div`
   flex-grow: 1;
+  max-width: 25%;
   &:first-child {
     margin-left: 25px;
   }
   margin-right: 25px;
+`;
+
+const ColumnBody = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 export default function Column({
@@ -51,9 +57,11 @@ export default function Column({
           <i className="fas fa-plus" /> Add Card
         </Button>
       </ColumnTitle>
-      {cards.map(card => (
-        <Card card={card} key={card.id} moveCard={moveCard} deleteCard={deleteCard} />
-      ))}
+      <ColumnBody>
+        {cards.map(card => (
+          <Card card={card} key={card.id} moveCard={moveCard} deleteCard={deleteCard} />
+        ))}
+      </ColumnBody>
     </Wrapper>
   );
 }

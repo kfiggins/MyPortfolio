@@ -1,33 +1,42 @@
 import React from "react";
 
 import styled from "styled-components";
-import Button from "../shared/Button";
 
 const Wrapper = styled.div`
   text-align: center;
   position: relative;
+  min-height: 3em;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
 `;
 
-const LeftArrowButton = styled(Button)`
+const LeftArrowButton = styled.div`
+  padding: 0.1em 0.3em !important;
+  cursor: pointer;
   position: absolute;
   left: 0;
-  padding: 0.1em 0.3em !important;
+  color: #e1e1e1;
 `;
 
-const RightArrowButton = styled(Button)`
+const RightArrowButton = styled.div`
+  padding: 0.1em 0.3em !important;
+  cursor: pointer;
   position: absolute;
   right: 0;
-  padding: 0.1em 0.3em !important;
+  color: #e1e1e1;
 `;
 
 const DeleteCardButton = styled.span`
   position: absolute;
-  right: 25px;
+  right: 43px;
   cursor: pointer;
+  color: #b80000;
 `;
 
 const Title = styled.span`
   padding-right: 20px;
+  max-width: 80%;
 `;
 
 export default function Card({ card, moveCard, deleteCard }) {
@@ -47,14 +56,18 @@ export default function Card({ card, moveCard, deleteCard }) {
   return (
     <Wrapper>
       {card.position !== 1 && (
-        <LeftArrowButton onClick={handleMoveCardLeft}>{`<`}</LeftArrowButton>
+        <LeftArrowButton onClick={handleMoveCardLeft}>
+          {<i className="fas fa-chevron-left fa-3x" />}
+        </LeftArrowButton>
       )}
       <Title>{card.title}</Title>
       <DeleteCardButton danger onClick={handleDelete}>
-        x
+        <i className="fas fa-times" />
       </DeleteCardButton>
       {card.position !== 4 && (
-        <RightArrowButton onClick={handleMoveCardRight}>{`>`}</RightArrowButton>
+        <RightArrowButton onClick={handleMoveCardRight}>
+          {<i className="fas fa-chevron-right fa-3x" />}
+        </RightArrowButton>
       )}
     </Wrapper>
   );
