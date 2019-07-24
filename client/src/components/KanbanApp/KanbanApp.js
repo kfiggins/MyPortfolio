@@ -40,15 +40,15 @@ export default function Kanban() {
   ]);
 
   // TODO: figure out how to handle colors and columnPosition to add and remove columns
-  const addColumn = () => {
-    let column = {};
-    let text = prompt("Title of new column?");
-    column.title = text;
-    column.id = generateId();
-    column.headerColor = "#463";
-    column.columnPosition = 5;
-    setColumns([...columns, column]);
-  };
+  // const addColumn = () => {
+  //   let column = {};
+  //   let text = prompt("Title of new column?");
+  //   column.title = text;
+  //   column.id = generateId();
+  //   column.headerColor = "#463";
+  //   column.columnPosition = 5;
+  //   setColumns([...columns, column]);
+  // };
 
   // Initial Cards
   const [cards, setCard] = useState(

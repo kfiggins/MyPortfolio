@@ -7,6 +7,7 @@ import ComponentMenu from "./ComponentMenu";
 import ComponentHome from "./ComponentHome";
 import FieldExample from "./FieldExample";
 import HideShowExample from "./HideShowExample";
+import BadgeExample from "./BadgeExample";
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,6 +19,7 @@ const componentMenu = [
   { name: "Button" },
   { name: "ShowHide" },
   { name: "Field" },
+  { name: "Badge" },
   { name: "More Coming Soon" }
 ];
 
@@ -31,6 +33,7 @@ export default function Components() {
           <Route path="/components/Button" component={ButtonExample} />
           <Route path="/components/ShowHide" component={HideShowExample} />
           <Route path="/components/Field" component={FieldExample} />
+          <Route path="/components/Badge" component={BadgeExample} />
         </Switch>
       </Wrapper>
     </Fragment>
