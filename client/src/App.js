@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
 import BlogPlaceHolder from "./components/BlogPlaceHolder";
-import Components from "./components/Components";
+import Components from "./components/componentLibrary/Components";
 import GitHubRepoApp from "./components/gitHubRepoApp/GitHubRepoApp";
 import Home from "./components/Home";
 import KanbanApp from "./components/kanbanApp/KanbanApp";

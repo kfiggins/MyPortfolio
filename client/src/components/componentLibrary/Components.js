@@ -2,12 +2,12 @@ import React, { Fragment } from "react";
 import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 
-import ButtonExample from "./ButtonExample";
-import ComponentMenu from "./ComponentMenu";
-import ComponentHome from "./ComponentHome";
-import FieldExample from "./FieldExample";
-import HideShowExample from "./HideShowExample";
-import BadgeExample from "./BadgeExample";
+import ButtonExample from "../componentLibrary/ButtonExample";
+import ComponentMenu from "../componentLibrary/ComponentMenu";
+import ComponentHome from "../componentLibrary/ComponentHome";
+import FieldExample from "../componentLibrary/FieldExample";
+import HideShowExample from "../componentLibrary/HideShowExample";
+import BadgeExample from "../componentLibrary/BadgeExample";
 
 const Wrapper = styled.div`
   display: flex;

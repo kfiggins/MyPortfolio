@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import TextField from "./shared/TextField";
+import TextField from "../shared/TextField";
 
 const Wrapper = styled.div`
   width: 50%;

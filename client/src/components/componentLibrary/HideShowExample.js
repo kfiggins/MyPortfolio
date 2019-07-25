@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import Button from "./shared/Button";
-import HideShow from "./shared/HideShow";
+import Button from "../shared/Button";
+import HideShow from "../shared/HideShow";
 
 const ShowButton = styled(Button)`
   margin-right: 5px;

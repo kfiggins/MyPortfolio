@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-import Badge from "./shared/Badge";
-import BadgeWithIcon from "./shared/BadgeWithIcon";
+import Badge from "../shared/Badge";
+import BadgeWithIcon from "../shared/BadgeWithIcon";
 
 const BadgeWrapper = styled.div`
   display: flex;
