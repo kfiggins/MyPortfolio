@@ -1,27 +1,17 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
-class HideShow extends Component {
-  state = {
-    on: false
+function HideShow({ children }) {
+  const [on, setOn] = useState(false);
+
+  const hide = () => {
+    setOn(false);
   };
 
-  hide = () => {
-    this.setState({
-      on: false
-    });
+  const show = () => {
+    setOn(true);
   };
 
-  show = () => {
-    this.setState({
-      on: true
-    });
-  };
-
-  render() {
-    const { children } = this.props;
-
-    return children({ on: this.state.on, hide: this.hide, show: this.show });
-  }
+  return children({ on: on, hide: hide, show: show });
 }
 
 export default HideShow;
