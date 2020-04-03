@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import styled from "styled-components";
+import Button from "../components/shared/Button";
 
 import DeveloperProfile from "@welovedevs/react-ultimate-resume";
 import jsonResume from "../assets/json-resume.json";
@@ -33,7 +34,30 @@ const SocialIcon = styled.i`
   }
 `;
 
+const ActionWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 180px;
+  margin-bottom: 800px;
+  cursor: pointer;
+
+  &:hover {
+  }
+`;
+
+const ArrowIconWrapper = styled.div`
+  padding: 20px 0;
+`;
+
 export default function Home() {
+  const resumeRef = useRef(null);
+
+  const scrollToResume = () => {
+    resumeRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <Wrapper>
       <Header>
@@ -67,8 +91,27 @@ export default function Home() {
           <SocialIcon className="fab fa-github" />
         </a>
       </SocialIcons>
-      {console.log(JSON.stringify(jsonResume))}
-      <DeveloperProfile data={JSON.stringify(jsonResume)} />
+
+      <ActionWrapper onClick={scrollToResume}>
+        {/* <div>Check out my resume</div> */}
+        <ArrowIconWrapper>
+          <SocialIcon
+            style={{ fontSize: "40px" }}
+            className="fas fa-arrow-down"
+          ></SocialIcon>
+        </ArrowIconWrapper>
+      </ActionWrapper>
+      <div ref={resumeRef}>
+        <DeveloperProfile
+          mode="edit"
+          options={{
+            endpoints: {
+              devicons: ""
+            }
+          }}
+          data={jsonResume}
+        />
+      </div>
     </Wrapper>
   );
 }

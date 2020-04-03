@@ -1,0 +1,226 @@
+{
+  "basics": {
+    "name": "Kyler Figgins",
+    "label": "Programmer",
+    "picture": "",
+    "email": "john@gmail.com",
+    "phone": "(912) 555-4321",
+    "website": "http://johndoe.com",
+    "summary": "A summary of John Doe...",
+    "location": {
+      "address": "2712 Broadway St",
+      "postalCode": "CA 94115",
+      "city": "San Francisco",
+      "countryCode": "US",
+      "region": "California"
+    },
+    "profiles": [
+      {
+        "network": "Twitter",
+        "username": "john",
+        "url": "http://twitter.com/john"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "Company 2 ",
+      "position": "Worker",
+      "website": "http://company.com",
+      "startDate": "2014-01-01",
+      "summary": "Description...",
+      "location": "Paris, France",
+      "highlights": ["Started the company"]
+    },
+    {
+      "name": "What a nice office",
+      "position": "President",
+      "website": "http://company.com",
+      "startDate": "2013-01-01",
+      "endDate": "2014-01-01",
+      "summary": "Description...",
+      "location": "Paris, France",
+      "highlights": ["Started the company"]
+    },
+    {
+      "name": "What a nice experience",
+      "position": "Lead dev",
+      "website": "http://company.com",
+      "summary": "Description...",
+      "location": "Paris, France",
+      "highlights": ["Started the company"]
+    }
+  ],
+  "volunteer": [
+    {
+      "organization": "Organization",
+      "position": "Volunteer",
+      "website": "http://organization.com/",
+      "endDate": "2013-01-01",
+      "summary": "Description...",
+      "highlights": ["Awarded 'Volunteer of the Month'"]
+    }
+  ],
+  "education": [
+    {
+      "institution": "ISEN",
+      "area": "Software Development",
+      "studyType": "Engineer Degree",
+      "startDate": "2011-01-01",
+      "endDate": "2013-01-01",
+      "gpa": "4.0",
+      "courses": ["DB1101 - Basic SQL"]
+    },
+    {
+      "institution": "Université d'artois",
+      "area": "",
+      "studyType": "",
+      "startDate": "2011-01-01",
+      "endDate": "",
+      "gpa": "4.0",
+      "courses": ["DB1101 - Basic SQL"]
+    }
+  ],
+  "awards": [
+    {
+      "title": "Award",
+      "date": "2014-11-01",
+      "awarder": "Company",
+      "summary": "There is no spoon."
+    }
+  ],
+  "publications": [
+    {
+      "name": "Publication",
+      "publisher": "Company",
+      "releaseDate": "2014-10-01",
+      "website": "http://publication.com",
+      "summary": "Description..."
+    }
+  ],
+  "skills": [
+    {
+      "name": "Reactaaa",
+      "level": "Master",
+      "value": 100,
+      "keywords": ["HTML", "CSS", "Javascript"]
+    },
+    {
+      "name": "Angular",
+      "level": "Master",
+      "value": 80,
+      "keywords": ["HTML", "CSS", "Javascript"]
+    },
+    {
+      "name": "NodeJS",
+      "level": "Master",
+      "value": 40,
+      "keywords": ["HTML", "CSS", "Javascript"]
+    },
+    {
+      "name": "Firebase",
+      "level": "Master",
+      "value": 60,
+      "keywords": ["HTML", "CSS", "Javascript"]
+    },
+    {
+      "name": "Gmail",
+      "level": "Master",
+      "value": 20,
+      "keywords": ["HTML", "CSS", "Javascript"]
+    },
+    {
+      "name": "K8S",
+      "level": "Master",
+      "value": 80,
+      "keywords": ["HTML", "CSS", "Javascript"]
+    }
+  ],
+  "languages": [
+    { "language": "English", "value": 100, "fluency": "Native speaker" }
+  ],
+  "interests": [
+    {
+      "name": "Burritos",
+      "gifUrl": "https://media.giphy.com/media/d8WjGORtSEWqc/giphy.gif"
+    },
+    {
+      "name": "Dogs",
+      "gifUrl": "https://media.giphy.com/media/3o85xsGXVuYh8lM3EQ/giphy.gif"
+    },
+    {
+      "name": "Tendresse",
+      "gifUrl": "https://media.giphy.com/media/EehnUUCH2JcwU/giphy.gif"
+    },
+    {
+      "name": "Something",
+      "gifUrl": "https://media.giphy.com/media/xTiTnIuKP1BLsMTerS/giphy.gif"
+    },
+    {
+      "name": "J'aime faire de la course à pied et des randonnées en famille le weekend."
+    }
+  ],
+  "references": [{ "name": "Jane Doe", "reference": "Reference..." }],
+  "projects": [
+    {
+      "name": "Développement d'un serpent connecté",
+      "description": "Et oui, vous avez bien entendu !\nUn serpent connecté, c'est comme une montre connectée, mais en serpent, en fait ça ressemble pas une montre, mais ça reste connecté 🚀",
+      "images": []
+    }
+  ],
+  "specific": {
+    "basics": {
+      "visaSponsorship": true,
+      "personalDescription": "This is a longer description of me, of my backstory, my backyard, my backfire, my backend, my frontend and my friends."
+    },
+    "dreamJob": {
+      "locations": [
+        { "name": "Lille, France" },
+        { "name": "Paris,France" },
+        { "name": "Valenciennes, France" },
+        { "name": "Lille, France" },
+        { "name": "Paris,France" },
+        { "name": "Valenciennes, France" }
+      ],
+      "remoteFrequency": "regularly"
+    },
+    "currentJob": {
+      "issues": { "boring_management": true, "boring_team": true }
+    },
+    "education": { "studiesLevel": 5 },
+    "work": {
+      "contractTypes": ["permanent"],
+      "codingYears": 7,
+      "codingReason": "J'ai commencé à coder sur Amstrad dans ma cave et je n'ai jamais arrêté depuis",
+      "searchState": "activelySearching",
+      "experienceYears": 9
+    },
+    "sound": {
+      "embedUrl": "https://open.spotify.com/embed/playlist/37i9dQZF1DWWl7MndYYxge"
+    },
+    "interestedBy": "Angular, la blochain et les chatons."
+  },
+  "resumeCustomization": {
+    "imageHeader": {
+      "url": "https://cdn.filestackcontent.com/8I2wVnCRTFxypXRYLRsp",
+      "alt": "Default Banner"
+    },
+    "cardsOrder": [
+      { "type": "basics", "variant": 4 },
+      { "type": "projects", "variant": 4 },
+      { "type": "skills", "variant": 0 },
+      { "type": "dreamjob", "variant": 4 },
+      { "type": "experiences", "variant": 4 },
+      { "type": "studies", "variant": 4 },
+      { "type": "gifs", "variant": 0 },
+      { "type": "interestedBy", "variant": 3 },
+      { "type": "language", "variant": 4 },
+      { "type": "soundtrack", "variant": 4 }
+    ],
+    "fields": {
+      "work": {
+        "customDateFormat": "YYYY"
+      }
+    }
+  }
+}

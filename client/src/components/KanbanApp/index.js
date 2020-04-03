@@ -109,7 +109,9 @@ export default function Kanban() {
             key={column.id}
             name={column.title}
             headerColor={column.headerColor}
-            cards={cards.filter(card => card.position === column.columnPosition)}
+            cards={cards.filter(
+              card => card.position === column.columnPosition
+            )}
             addCard={addCard}
             columnPosition={column.columnPosition}
             moveCard={moveCard}
