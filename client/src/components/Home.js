@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+
+import DeveloperProfile from "@welovedevs/react-ultimate-resume";
+import jsonResume from "../assets/json-resume.json";
 
 const Wrapper = styled.div`
   text-align: center;
@@ -18,7 +21,7 @@ const Body = styled.div`
   font-size: calc(8px + 2vmin);
 `;
 
-const Footer = styled.div`
+const SocialIcons = styled.div`
   font-size: calc(12px + 2vmin);
 `;
 
@@ -41,8 +44,12 @@ export default function Home() {
         <br />
         <br />
       </Body>
-      <Footer>
-        <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/Kfiggins1">
+      <SocialIcons>
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://twitter.com/Kfiggins1"
+        >
           <SocialIcon className="fab fa-twitter" />
         </a>
         <a
@@ -52,10 +59,16 @@ export default function Home() {
         >
           <SocialIcon className="fab fa-linkedin-in" />
         </a>
-        <a target="_blank" rel="noopener noreferrer" href="https://github.com/kfiggins">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://github.com/kfiggins"
+        >
           <SocialIcon className="fab fa-github" />
         </a>
-      </Footer>
+      </SocialIcons>
+      {console.log(JSON.stringify(jsonResume))}
+      <DeveloperProfile data={JSON.stringify(jsonResume)} />
     </Wrapper>
   );
 }
