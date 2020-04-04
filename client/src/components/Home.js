@@ -1,13 +1,11 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import Button from "../components/shared/Button";
-
-import DeveloperProfile from "@welovedevs/react-ultimate-resume";
-import jsonResume from "../assets/json-resume.json";
+import profilePic from "../assets/kfiggins2.png";
 
 const Wrapper = styled.div`
   text-align: center;
   color: #293241;
+  padding-top: 30px;
 `;
 
 const Header = styled.div`
@@ -20,6 +18,7 @@ const Header = styled.div`
 
 const Body = styled.div`
   font-size: calc(8px + 2vmin);
+  margin-bottom: 60px;
 `;
 
 const SocialIcons = styled.div`
@@ -39,7 +38,7 @@ const ActionWrapper = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 180px;
+  margin-top: 90px;
   margin-bottom: 800px;
   cursor: pointer;
 
@@ -61,12 +60,11 @@ export default function Home() {
   return (
     <Wrapper>
       <Header>
-        <h1>Kyler Figgins</h1>
+        <img style={{ width: 300, borderRadius: 150 }} src={profilePic}></img>
+        <h1 style={{ margin: "30px 0" }}>Kyler Figgins</h1>
       </Header>
       <Body>
         <p>Full-Stack React Developer who likes clean sites</p>
-        <br />
-        <br />
       </Body>
       <SocialIcons>
         <a
@@ -101,17 +99,7 @@ export default function Home() {
           ></SocialIcon>
         </ArrowIconWrapper>
       </ActionWrapper>
-      <div ref={resumeRef}>
-        <DeveloperProfile
-          mode="edit"
-          options={{
-            endpoints: {
-              devicons: ""
-            }
-          }}
-          data={jsonResume}
-        />
-      </div>
+      <div ref={resumeRef}></div>
     </Wrapper>
   );
 }
