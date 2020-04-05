@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
 import profilePic from "../assets/kfiggins2.png";
+import { useMediaQuery } from "../hooks/useMediaQuery";
 
 const Wrapper = styled.div`
   text-align: center;
@@ -57,6 +58,7 @@ export default function Home() {
     resumeRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
+  const mobileScreen = useMediaQuery("(max-width: 850)");
   return (
     <Wrapper>
       <Header>
@@ -90,8 +92,7 @@ export default function Home() {
         </a>
       </SocialIcons>
 
-      <ActionWrapper onClick={scrollToResume}>
-        {/* <div>Check out my resume</div> */}
+      {/* <ActionWrapper onClick={scrollToResume}>
         <ArrowIconWrapper>
           <SocialIcon
             style={{ fontSize: "40px" }}
@@ -99,7 +100,7 @@ export default function Home() {
           ></SocialIcon>
         </ArrowIconWrapper>
       </ActionWrapper>
-      <div ref={resumeRef}></div>
+      <div ref={resumeRef}></div> */}
     </Wrapper>
   );
 }

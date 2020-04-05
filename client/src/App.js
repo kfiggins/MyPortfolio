@@ -10,28 +10,29 @@ import Components from "./components/componentLibrary/Components";
 import GitHubRepoApp from "./components/gitHubRepoApp/GitHubRepoApp";
 import Home from "./components/Home";
 import KanbanApp from "./components/KanbanApp";
-import Navbar from "./components/Navbar";
+import { Navbar, MobileNavbar } from "./components/Navbar";
 import TodoApp from "./components/todoApp/TodoApp";
+import { useMediaQuery } from "./hooks/useMediaQuery";
 
 // Set up toast
 toast.configure();
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/components" component={Components} />
-          <Route path="/blog" component={BlogPlaceHolder} />
-          <Route path="/todo" component={TodoApp} />
-          <Route path="/kanban" component={KanbanApp} />
-          <Route path="/gitHubRepo" component={GitHubRepoApp} />
-        </Switch>
-      </Router>
-    );
-  }
-}
+const App = () => {
+  const mobileScreen = useMediaQuery("(max-width: 850px)");
+
+  return (
+    <Router>
+      {mobileScreen ? <MobileNavbar /> : <Navbar />}
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/components" component={Components} />
+        <Route path="/blog" component={BlogPlaceHolder} />
+        <Route path="/todo" component={TodoApp} />
+        <Route path="/kanban" component={KanbanApp} />
+        <Route path="/gitHubRepo" component={GitHubRepoApp} />
+      </Switch>
+    </Router>
+  );
+};
 
 export default App;
