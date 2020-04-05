@@ -91,14 +91,13 @@ const MobileMenu = styled.div`
 
 const MobileMenuItemWrapper = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
 `;
 
 const MobileMenuItem = styled(Link)`
   color: black;
   text-decoration: none;
-  font-size: 80px;
+  font-size: 50px;
 `;
 
 export const Navbar = () => {
