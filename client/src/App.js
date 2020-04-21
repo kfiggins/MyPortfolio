@@ -11,6 +11,7 @@ import GitHubRepoApp from "./components/gitHubRepoApp/GitHubRepoApp";
 import Home from "./components/Home";
 import KanbanApp from "./components/KanbanApp";
 import { Navbar, MobileNavbar } from "./components/Navbar";
+import Navigation from "./components/shared/Navigation"
 import TodoApp from "./components/todoApp/TodoApp";
 import { useMediaQuery } from "./hooks/useMediaQuery";
 
@@ -23,6 +24,7 @@ const App = () => {
   return (
     <Router>
       {mobileScreen ? <MobileNavbar /> : <Navbar />}
+      <Navigation darkColor="#24364c" lightColor="#506a8c" primaryColor="#3d5a80" />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/components" component={Components} />
