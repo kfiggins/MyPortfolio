@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { sharedColors } from "../style/variables";
 
+// Deprecated 4/21/2020 No longer using but keeping in case we want for desktop menu.
+
 const Nav = styled.ul`
   list-style-type: none;
   margin: 0;
