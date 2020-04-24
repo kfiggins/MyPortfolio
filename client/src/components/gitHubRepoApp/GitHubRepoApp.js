@@ -32,7 +32,7 @@ const UserDetails = styled.div`
 const RepoDetails = styled.div`
   display: flex;
   flex-wrap: wrap;
-  overflow-y: scroll;
+  overflow-y: auto;
   height: calc(100vh - 280px);
 `;
 
