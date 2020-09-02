@@ -31,7 +31,8 @@ const App = () => {
 
   return (
     <Router>
-      <Navigation darkColor="#24364c" lightColor="#24364c" menuItems={menuItems} />
+      <Navigation isMobile={mobileScreen} darkColor="#24364c" lightColor="#24364c" menuItems={menuItems} />
+      
       <div style={{ padding: "50px" }}>
         <Switch>
           <Route exact path="/" component={Home} />

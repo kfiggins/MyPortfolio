@@ -6,7 +6,7 @@ require('./styles.scss')
 
 
 export default function Navagation(props) {
-  const { darkColor, lightColor, menuItems } = props;
+  const { darkColor, lightColor, menuItems, isMobile } = props;
   const [checkboxChecked, setCheckboxChecked] = useState(false);
   return (
     <div className="navigation">
@@ -14,8 +14,8 @@ export default function Navagation(props) {
       <label for="nav-toggle" class="navigation__logo">
         <span className="navigation__icon"></span>
       </label>
-      <div className="navigation__background" style={{ backgroundImage: `radial-gradient(${darkColor}, ${lightColor})` }}>&nbsp;</div>
-      <nav className="navigation__nav">
+      <div className={isMobile ? "navigation__background" :"navigation__background navigation__background__transition"} style={{ backgroundImage: `radial-gradient(${darkColor}, ${lightColor})` }}>&nbsp;</div>
+      <nav className={isMobile ? "navigation__nav" :"navigation__nav navigation__nav__transition"} >
         <ul className="navigation__list">
           {menuItems.map((item, index) =>
             <li key={index} className="navigation__item"><Link to={item.link} className="navigation__link" onClick={() => setCheckboxChecked(false)}>{item.name}</Link></li>
