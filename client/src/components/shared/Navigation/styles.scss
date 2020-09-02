@@ -54,6 +54,9 @@
     list-style-type: none;
     text-align: center;
     width: 100%;
+    &__mobile{
+      left: 45%;
+    }
   }
 
   &__item {

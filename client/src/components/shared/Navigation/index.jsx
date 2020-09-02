@@ -16,7 +16,7 @@ export default function Navagation(props) {
       </label>
       <div className={isMobile ? "navigation__background" :"navigation__background navigation__background__transition"} style={{ backgroundImage: `radial-gradient(${darkColor}, ${lightColor})` }}>&nbsp;</div>
       <nav className={isMobile ? "navigation__nav" :"navigation__nav navigation__nav__transition"} >
-        <ul className="navigation__list">
+        <ul className={isMobile ? "navigation__list navigation__list__mobile" : "navigation__list"}>
           {menuItems.map((item, index) =>
             <li key={index} className="navigation__item"><Link to={item.link} className="navigation__link" onClick={() => setCheckboxChecked(false)}>{item.name}</Link></li>
           )}
