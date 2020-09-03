@@ -18,12 +18,12 @@ import { useMediaQuery } from "./hooks/useMediaQuery";
 toast.configure();
 
 const menuItems = [
-  { name: "Home", link: "/" },
-  { name: "Components", link: "/components" },
-  { name: "To-Do App", link: "/todo" },
-  { name: "Kanban App", link: "/kanban" },
-  { name: "GitHub Repo App", link: "/gitHubRepo" },
-  { name: "Blog", link: "/blog" },
+  { name: "Home", link: "/", isMobile: true },
+  { name: "Components", link: "/components", isMobile: false },
+  { name: "To-Do App", link: "/todo", isMobile: true },
+  { name: "Kanban App", link: "/kanban", isMobile: false },
+  { name: "GitHub Repo App", link: "/gitHubRepo", isMobile: true },
+  { name: "Blog", link: "/blog", isMobile: true },
 ]
 
 const App = () => {
