@@ -3,9 +3,9 @@ module.exports = {
     title: `One byte at a time`,
     author: {
       name: `Kyler Figgins`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      summary: `who is a father of 3, husband, software engineer, focused on building quality software and learning something new one byte at a time.`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
+    description: `A blend of software, boardgames, books and randoms`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.app/`,
     social: {
       twitter: `Kfiggins1`,
@@ -66,7 +66,7 @@ module.exports = {
         background_color: `#ffffff`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `content/assets/gatsby-icon.png`,
+        icon: `content/assets/fig-icon.png`,
       },
     },
     `gatsby-plugin-react-helmet`,
