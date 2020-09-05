@@ -19,6 +19,7 @@ export default function Navagation(props) {
         <ul className={isMobile ? "navigation__list navigation__list__mobile" : "navigation__list"}>
           {menuItems.map((item, index) =>{
             if(isMobile && !item.isMobile) return null;
+            if(item.externalLink) return <li key={index} className="navigation__item"><a href={item.externalLink} target="_" className="navigation__link" onClick={() => setCheckboxChecked(false)}>{item.name}</a></li>
             return <li key={index} className="navigation__item"><Link to={item.link} className="navigation__link" onClick={() => setCheckboxChecked(false)}>{item.name}</Link></li>
           }
           )}

@@ -23,7 +23,7 @@ const menuItems = [
   { name: "To-Do App", link: "/todo", isMobile: true },
   { name: "Kanban App", link: "/kanban", isMobile: false },
   { name: "GitHub Repo App", link: "/gitHubRepo", isMobile: true },
-  { name: "Blog", link: "/blog", isMobile: true },
+  { name: "Blog", externalLink: "https://blog.kfiggins.com/", isMobile: true },
 ]
 
 const App = () => {
@@ -37,7 +37,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/components" component={Components} />
-          <Route path="/blog" component={BlogPlaceHolder} />
+          {/* <Route path="/blog" component={BlogPlaceHolder} /> */}
           <Route path="/todo" component={TodoApp} />
           <Route path="/kanban" component={KanbanApp} />
           <Route path="/gitHubRepo" component={GitHubRepoApp} />
