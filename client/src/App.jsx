@@ -5,11 +5,11 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
-import BlogPlaceHolder from "./components/BlogPlaceHolder";
 import Components from "./components/componentLibrary/Components";
 import GitHubRepoApp from "./components/gitHubRepoApp/GitHubRepoApp";
 import Home from "./components/Home";
 import KanbanApp from "./components/KanbanApp";
+import BookRatings from "./components/bookRatings";
 import Navigation from "./components/shared/Navigation"
 import TodoApp from "./components/todoApp/TodoApp";
 import { useMediaQuery } from "./hooks/useMediaQuery";
@@ -24,6 +24,7 @@ const menuItems = [
   { name: "Kanban App", link: "/kanban", isMobile: false },
   { name: "GitHub Repo App", link: "/gitHubRepo", isMobile: true },
   { name: "Blog", externalLink: "https://blog.kfiggins.com/", isMobile: true },
+  {name: "Book Ratings", link: "/bookRatings", isMobile: true}
 ]
 
 const App = () => {
@@ -37,10 +38,10 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/components" component={Components} />
-          {/* <Route path="/blog" component={BlogPlaceHolder} /> */}
           <Route path="/todo" component={TodoApp} />
           <Route path="/kanban" component={KanbanApp} />
           <Route path="/gitHubRepo" component={GitHubRepoApp} />
+          <Route path="/bookRatings" component={BookRatings} />
         </Switch>
       </div>
     </Router>
