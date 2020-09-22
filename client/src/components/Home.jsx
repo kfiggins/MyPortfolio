@@ -1,6 +1,6 @@
 import React, { useState, useRef } from "react";
 import styled from "styled-components";
-import profilePic from "../assets/kfiggins2.png";
+import profilePic from "../assets/kfiggins3.jpg";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 
 const Wrapper = styled.div`
