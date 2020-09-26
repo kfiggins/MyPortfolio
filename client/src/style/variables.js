@@ -1,5 +1,10 @@
 export const sharedColors = {
-  primary: "",
+  primary: "#293241",
   secondary: "#ee6c4d",
-  secondaryDark: "#ec5936",
+  success: "#567047",
+  danger: "#b80000",
+  warning: "#e59400",
+  info: "#7688a8",
+  default: "#c4c4c4",
+  lightGray: "#d8dadc",
 };

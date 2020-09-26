@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { sharedColors } from "../../style/variables";
 
 import Badge from "../shared/Badge";
 import BadgeWithIcon from "../shared/BadgeWithIcon";
@@ -14,14 +15,14 @@ export default function BadgeExample() {
     <div>
       <h1>Badge Example</h1>
       <BadgeWrapper>
-        <Badge background="#3d5a80" fontSize="40px">
+        <Badge background={sharedColors.info} fontSize="40px">
           44
         </Badge>
         <Badge fontSize="30px">8</Badge>
-        <Badge background="#293241" fontSize="20px">
+        <Badge background={sharedColors.primary} fontSize="20px">
           7
         </Badge>
-        <Badge background="#ee6c4d" fontSize="10px">
+        <Badge background={sharedColors.secondary} fontSize="10px">
           1
         </Badge>
       </BadgeWrapper>

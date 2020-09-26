@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { sharedColors } from "../../style/variables";
 
 export default function Button({
   children,
@@ -13,7 +14,7 @@ export default function Button({
   ...props
 }) {
   // Default
-  let backgrondColor = "#c4c4c4";
+  let backgrondColor = sharedColors.default;
   let boxShadowColor = "#d5d5d5";
   let hoverColor = "#c9c9c9";
   let padding = "0.55rem";
@@ -29,31 +30,31 @@ export default function Button({
   }
 
   if (primary) {
-    backgrondColor = "#293241";
+    backgrondColor = sharedColors.primary;
     boxShadowColor = "#696f7a";
     hoverColor = "#3e4654";
   }
 
   if (success) {
-    backgrondColor = "#567047";
+    backgrondColor = sharedColors.success;
     boxShadowColor = "#99a990";
     hoverColor = "#667e59";
   }
 
   if (danger) {
-    backgrondColor = "#b80000";
+    backgrondColor = sharedColors.danger;
     boxShadowColor = "#cd4c4c";
     hoverColor = "#bf1919";
   }
 
   if (warning) {
-    backgrondColor = "#e59400";
+    backgrondColor = sharedColors.warning;
     boxShadowColor = "#ecb44c";
     hoverColor = "#e79e19";
   }
 
   if (info) {
-    backgrondColor = "#7688a8";
+    backgrondColor = sharedColors.info;
     boxShadowColor = "#9fabc2";
     hoverColor = "#8393b0";
   }

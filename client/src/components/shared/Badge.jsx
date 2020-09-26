@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { sharedColors } from "../../style/variables";
 
 const Wrapper = styled.span`
   display: flex;
@@ -8,10 +9,10 @@ const Wrapper = styled.span`
 `;
 
 export default function Badge({
-  background = "#567047",
+  background = sharedColors.success,
   color = "white",
   fontSize = "12px",
-  children
+  children,
 }) {
   const BadgeCircle = styled.span`
     display: inline-block;

@@ -7,6 +7,7 @@ import { getRepos, getUserData } from "../../externalAPIs/github-api";
 
 import Button from "../shared/Button";
 import TextField from "../shared/TextField";
+import { sharedColors } from "../../style/variables";
 
 const Wrapper = styled.div`
   text-align: center;
@@ -47,10 +48,10 @@ const RepoItem = styled.a`
   position: relative;
   min-width: 6em;
   text-decoration: none;
-  color: #293241 !important;
+  color: ${sharedColors.primary} !important;
 
   &:hover {
-    background-color: #ee6c4d;
+    background-color: ${sharedColors.secondary};
     color: white !important;
     cursor: pointer;
   }
@@ -76,9 +77,11 @@ export default function GitHubRepoApp() {
 
   const handleGitHubSearch = () => {
     getRepos(gitHubUserName)
-      .then(response => setGitHubUserRepos(response))
-      .catch(error => toast.error(`${gitHubUserName} username not found on GitHub`));
-    getUserData(gitHubUserName).then(data => setGitHubUserData(data));
+      .then((response) => setGitHubUserRepos(response))
+      .catch((error) =>
+        toast.error(`${gitHubUserName} username not found on GitHub`)
+      );
+    getUserData(gitHubUserName).then((data) => setGitHubUserData(data));
   };
 
   useEffect(() => {
@@ -96,7 +99,7 @@ export default function GitHubRepoApp() {
       <UsernameInput
         name="gitHubUserNamename"
         label="GitHub Username"
-        onChange={e => setGitHubUserName(e.target.value)}
+        onChange={(e) => setGitHubUserName(e.target.value)}
         value={gitHubUserName}
       />
       <br />
@@ -117,7 +120,10 @@ export default function GitHubRepoApp() {
               <b>{user.public_repos}</b> Public Repos
             </p>
             <p>
-              Joined GitHub <b>{distanceInWordsToNow(user.created_at, { addSuffix: true })}</b>
+              Joined GitHub{" "}
+              <b>
+                {distanceInWordsToNow(user.created_at, { addSuffix: true })}
+              </b>
             </p>
             <p>
               <b>{gitHubCustomStats.TotalStars.toLocaleString()}</b> Total Stars
@@ -127,7 +133,7 @@ export default function GitHubRepoApp() {
             {gitHubUserRepos.length > 0 &&
               gitHubUserRepos
                 .sort((a, b) => b.stargazers_count - a.stargazers_count)
-                .map(repo => (
+                .map((repo) => (
                   <RepoItem href={repo.html_url} target="_blank">
                     {repo.stargazers_count > 0 && (
                       <Stars>

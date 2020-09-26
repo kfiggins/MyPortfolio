@@ -1,11 +1,11 @@
-import React, { useState, useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import profilePic from "../assets/kfiggins3.jpg";
-import { useMediaQuery } from "../hooks/useMediaQuery";
+import { sharedColors } from "../style/variables";
 
 const Wrapper = styled.div`
   text-align: center;
-  color: #293241;
+  color: ${sharedColors.primary};
   padding-top: 30px;
 `;
 
@@ -27,42 +27,22 @@ const SocialIcons = styled.div`
 `;
 
 const SocialIcon = styled.i`
-  color: #293241;
+  color: ${sharedColors.primary};
   margin: 10px;
   &:hover {
-    color: #ee6c4d;
+    color: ${sharedColors.secondary};
   }
-`;
-
-const ActionWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-top: 90px;
-  margin-bottom: 800px;
-  cursor: pointer;
-
-  &:hover {
-  }
-`;
-
-const ArrowIconWrapper = styled.div`
-  padding: 20px 0;
 `;
 
 export default function Home() {
-  const resumeRef = useRef(null);
-
-  const scrollToResume = () => {
-    resumeRef.current.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const mobileScreen = useMediaQuery("(max-width: 850)");
   return (
     <Wrapper>
       <Header>
-        <img style={{ width: 300, borderRadius: 150 }} src={profilePic}></img>
+        <img
+          alt="me"
+          style={{ width: 300, borderRadius: 150 }}
+          src={profilePic}
+        ></img>
         <h1 style={{ margin: "30px 0" }}>Kyler Figgins</h1>
       </Header>
       <Body>
@@ -91,16 +71,6 @@ export default function Home() {
           <SocialIcon className="fab fa-github" />
         </a>
       </SocialIcons>
-
-      {/* <ActionWrapper onClick={scrollToResume}>
-        <ArrowIconWrapper>
-          <SocialIcon
-            style={{ fontSize: "40px" }}
-            className="fas fa-arrow-down"
-          ></SocialIcon>
-        </ArrowIconWrapper>
-      </ActionWrapper>
-      <div ref={resumeRef}></div> */}
     </Wrapper>
   );
 }

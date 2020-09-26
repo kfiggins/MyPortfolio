@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 function HideShow({ children }) {
   const [on, setOn] = useState(false);

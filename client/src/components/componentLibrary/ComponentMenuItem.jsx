@@ -1,21 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { sharedColors } from "../../style/variables";
 
 const MenuItem = styled(Link)`
-  border-bottom: #d8dadc solid 1px;
+  border-bottom: ${sharedColors.lightGray} solid 1px;
   padding: 1em;
   display: block;
   text-decoration: none;
   font-size: 1.2em;
-  color: #293241;
+  color: ${sharedColors.primary};
 
   &:first-child {
-    border-top: #d8dadc solid 1px;
+    border-top: ${sharedColors.lightGray} solid 1px;
   }
 
   &:hover {
-    background-color: #ee6c4d;
+    background-color: ${sharedColors.secondary};
     color: white;
     text-decoration: none;
   }

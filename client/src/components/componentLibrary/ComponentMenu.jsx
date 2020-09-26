@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { sharedColors } from "../../style/variables";
 
 import ComponentMenuItem from "./ComponentMenuItem";
 
@@ -15,10 +16,10 @@ const Wrapper = styled.div`
 
 const NonStyledLink = styled(Link)`
   text-decoration: none;
-  color: #293241;
+  color: ${sharedColors.primary};
 
   &:hover {
-    color: #293241;
+    color: ${sharedColors.primary};
     text-decoration: none;
   }
 `;
@@ -30,7 +31,7 @@ export default function ComponentMenu({ components }) {
         <h1>Components</h1>
       </NonStyledLink>
       <div>
-        {components.map(x => (
+        {components.map((x) => (
           <ComponentMenuItem key={x.name} name={x.name} />
         ))}
       </div>
