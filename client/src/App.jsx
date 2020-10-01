@@ -22,7 +22,6 @@ const menuItems = [
   { name: "Components", link: "/components", isMobile: false },
   // { name: "Favorite Books", link: "/books", isMobile: true },
   { name: "To-Do App", link: "/todo", isMobile: true },
-  { name: "Kanban App", link: "/kanban", isMobile: false },
   { name: "GitHub Repo App", link: "/gitHubRepo", isMobile: true },
   { name: "Blog", externalLink: "https://blog.kfiggins.com/", isMobile: true },
 ];
