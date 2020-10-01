@@ -8,7 +8,6 @@ import "./App.css";
 import Components from "./components/componentLibrary/Components";
 import GitHubRepoApp from "./components/gitHubRepoApp/GitHubRepoApp";
 import Home from "./components/Home";
-import KanbanApp from "./components/KanbanApp";
 import Navigation from "./components/shared/Navigation";
 import TodoApp from "./components/todoApp/TodoApp";
 import FavoriteBooks from "./components/FavoriteBooks";
@@ -44,7 +43,6 @@ const App = () => {
           <Route path="/components" component={Components} />
           <Route path="/books" component={FavoriteBooks} />
           <Route path="/todo" component={TodoApp} />
-          <Route path="/kanban" component={KanbanApp} />
           <Route path="/gitHubRepo" component={GitHubRepoApp} />
         </Switch>
       </div>
