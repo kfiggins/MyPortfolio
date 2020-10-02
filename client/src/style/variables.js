@@ -8,3 +8,13 @@ export const sharedColors = {
   default: "#c4c4c4",
   lightGray: "#d8dadc",
 };
+
+export const sharedFonts = {
+  cardTitle: {
+    fontFamily: "Julius Sans One",
+    fontSize: "24px",
+  },
+  cardBody: {
+    fontFamily: "Archivo Narrow",
+  },
+};
