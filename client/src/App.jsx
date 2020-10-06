@@ -19,7 +19,7 @@ toast.configure();
 const menuItems = [
   { name: "Home", link: "/", isMobile: true },
   { name: "Components", link: "/components", isMobile: false },
-  // { name: "Favorite Books", link: "/books", isMobile: true },
+  { name: "Favorite Books", link: "/books", isMobile: true },
   { name: "To-Do App", link: "/todo", isMobile: true },
   { name: "GitHub Repo App", link: "/gitHubRepo", isMobile: true },
   { name: "Blog", externalLink: "https://blog.kfiggins.com/", isMobile: true },

@@ -7,6 +7,7 @@ export const sharedColors = {
   info: "#7688a8",
   default: "#c4c4c4",
   lightGray: "#d8dadc",
+  linkBlue: "#2A5DB0",
 };
 
 export const sharedFonts = {
