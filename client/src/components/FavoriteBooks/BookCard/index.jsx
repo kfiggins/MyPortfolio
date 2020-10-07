@@ -1,23 +1,8 @@
 import React from "react";
 import { sharedFonts, sharedColors } from "../../../style/variables";
-import { rankTypes } from "../index";
+import RankIcon from "../RankIcon";
 
 export default function BookCard({ book }) {
-  const getIconColor = (rank) => {
-    if (!rank) return undefined;
-    switch (rank) {
-      case rankTypes.diamond:
-        return "#b9f2ff";
-      case rankTypes.gold:
-        return "#FFD700";
-      case rankTypes.silver:
-        return "#aaa9ad";
-      case rankTypes.bronze:
-        return "#cd7f32";
-    }
-  };
-  console.log(getIconColor(book.rank));
-
   return (
     <div
       style={{
@@ -54,7 +39,8 @@ export default function BookCard({ book }) {
           </div>
         </div>
         <div>
-          <div
+          <RankIcon rank={book.rank} />
+          {/* <div
             style={{
               display: "flex",
               flexDirection: "row",
@@ -71,10 +57,10 @@ export default function BookCard({ book }) {
               {book.rank}
             </div>
             <i
-              style={{ color: getIconColor(book.rank), fontSize: "24px" }}
+              style={{ color: getRankIconColor(book.rank), fontSize: "24px" }}
               className="fas fa-dragon"
             ></i>
-          </div>
+          </div> */}
         </div>
       </div>
       <div style={{ ...sharedFonts.cardBody, padding: "8px 0 0 8px" }}>
