@@ -17,10 +17,7 @@ export default function BookCard({ book }) {
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between" }}>
-        <div style={{ padding: "8px" }}>
-          {/* <img style={{ width: "100px" }} src={book.image} /> */}
-          {book.image}
-        </div>
+        <div style={{ padding: "8px" }}>{book.image}</div>
         <div>
           <div style={{ ...sharedFonts.cardTitle, padding: "8px" }}>
             {book.title}
@@ -40,33 +37,15 @@ export default function BookCard({ book }) {
         </div>
         <div>
           <RankIcon rank={book.rank} />
-          {/* <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <div
-              style={{
-                ...sharedFonts.cardTitle,
-                fontSize: "14px",
-                marginRight: "8px",
-              }}
-            >
-              {book.rank}
-            </div>
-            <i
-              style={{ color: getRankIconColor(book.rank), fontSize: "24px" }}
-              className="fas fa-dragon"
-            ></i>
-          </div> */}
         </div>
       </div>
       <div style={{ ...sharedFonts.cardBody, padding: "8px 0 0 8px" }}>
         {book.categories &&
           book.categories.map((category, index) => (
-            <span style={{ color: sharedColors.linkBlue, cursor: "pointer" }}>
+            <span
+              key={index}
+              style={{ color: sharedColors.linkBlue, cursor: "pointer" }}
+            >
               {category}
               {book.categories.length - 1 !== index && ", "}
             </span>

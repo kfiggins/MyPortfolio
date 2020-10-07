@@ -34,7 +34,7 @@ export const data = [
     categories: [categories.leadership],
     description: (
       <span>
-        <storng>Extreme Ownership</storng> explains the SEAL leadership concepts
+        <strong>Extreme Ownership</strong> explains the SEAL leadership concepts
         crucial to accomplishing the most difficult missions in combat and how
         to apply them to any group, team, or organization. It provides the
         reader with Jocko and Leif's formula for success: the mindset and

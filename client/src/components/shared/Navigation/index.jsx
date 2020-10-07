@@ -15,7 +15,7 @@ export default function Navagation(props) {
         onClick={() => setCheckboxChecked(!checkboxChecked)}
         id="nav-toggle"
       ></input>
-      <label for="nav-toggle" className="navigation__logo">
+      <label htmlFor="nav-toggle" className="navigation__logo">
         <span className="navigation__icon"></span>
       </label>
       <div

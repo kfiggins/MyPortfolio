@@ -54,7 +54,7 @@ export default function BookRatings() {
       <div style={{ display: "flex" }}>
         {Object.entries(rankTypes).map(([key, value]) => {
           return (
-            <div style={{ display: "flex", padding: "8px" }}>
+            <div key={key} style={{ display: "flex", padding: "8px" }}>
               <Toggle
                 id="testToggle"
                 defaultChecked={state[value]}
@@ -73,8 +73,8 @@ export default function BookRatings() {
           );
         })}
       </div>
-      {filteredData.map((book) => (
-        <BookCard book={book} />
+      {filteredData.map((book, index) => (
+        <BookCard key={index} book={book} />
       ))}
     </div>
   );
