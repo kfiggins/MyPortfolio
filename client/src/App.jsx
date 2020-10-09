@@ -12,6 +12,7 @@ import Navigation from "./components/shared/Navigation";
 import TodoApp from "./components/todoApp/TodoApp";
 import FavoriteBooks from "./components/FavoriteBooks";
 import { useMediaQuery } from "./hooks/useMediaQuery";
+import {screenSizeBreakPoints} from "./style/variables"
 
 // Set up toast
 toast.configure();
@@ -26,7 +27,7 @@ const menuItems = [
 ];
 
 const App = () => {
-  const mobileScreen = useMediaQuery("(max-width: 850px)");
+  const mobileScreen = useMediaQuery(screenSizeBreakPoints.small);
 
   return (
     <Router>

@@ -19,3 +19,7 @@ export const sharedFonts = {
     fontFamily: "Archivo Narrow",
   },
 };
+
+export const screenSizeBreakPoints = {
+  small: "800"
+}

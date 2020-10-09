@@ -1,11 +1,12 @@
 import React from "react";
+import "react-toggle/style.css";
+import Toggle from "react-toggle";
 
-import { sharedFonts, sharedColors } from "../../style/variables";
+import { sharedFonts, screenSizeBreakPoints } from "../../style/variables";
 import BookCard from "./BookCard";
 import { data, rankTypes } from "./data";
 import RankIcon from "./RankIcon";
-import Toggle from "react-toggle";
-import "react-toggle/style.css";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 const filtersReducer = (state, action) => {
   switch (action.type) {
@@ -37,6 +38,8 @@ const applyFilters = (data, state) => {
 
 export default function BookRatings() {
   const [state, dispatch] = React.useReducer(filtersReducer, initialFilters);
+  const isMobileScreen = useMediaQuery(screenSizeBreakPoints.small);
+
 
   const filteredData = applyFilters(data, state);
 
@@ -48,13 +51,16 @@ export default function BookRatings() {
         flexDirection: "column",
       }}
     >
-      <div style={sharedFonts.cardBody}>
+      <div>
+        <h1>My Book List</h1>
+      </div>
+      <div style={{...sharedFonts.cardBody, marginBottom: "8px"}}>
         As an Amazon Associate I earn from qualifying purchases.
       </div>
-      <div style={{ display: "flex" }}>
+      <div style={{ display: "flex", flexDirection: isMobileScreen ? "column" : "row" ,justifyContent: "space-between", width: isMobileScreen ? undefined :"100%", maxWidth: "750px" }}>
         {Object.entries(rankTypes).map(([key, value]) => {
           return (
-            <div key={key} style={{ display: "flex", padding: "8px" }}>
+            <div key={key} style={{ display: "flex", padding: "8px", paddingRight: "16px" }}>
               <Toggle
                 id="testToggle"
                 defaultChecked={state[value]}
@@ -74,7 +80,7 @@ export default function BookRatings() {
         })}
       </div>
       {filteredData.map((book, index) => (
-        <BookCard key={index} book={book} />
+        <BookCard key={index} book={book} isMobileScreen={isMobileScreen} />
       ))}
     </div>
   );
