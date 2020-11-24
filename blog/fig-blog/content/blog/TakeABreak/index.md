@@ -2,6 +2,7 @@
 title: Climbing Out Of The Rabbit Hole
 date: "2020-09-21"
 description: "Work smarter, not harder."
+featuredImage: "stuck.jpg"
 ---
 
 ![Stuck](./stuck.jpg)

@@ -2,6 +2,7 @@
 title: How 7 mins of daily exercise changed my life
 date: "2020-11-23"
 description: "How I climbed out of the dark days of covid quarantine and became a new me."
+featuredImage: "exercise.jpg"
 ---
 
 ![Exercise](./exercise.jpg)

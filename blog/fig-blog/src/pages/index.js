@@ -5,6 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import { rhythm } from "../utils/typography"
+import Img from "gatsby-image"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
@@ -15,6 +16,7 @@ const BlogIndex = ({ data, location }) => {
       <SEO title="All posts" />
       <Bio />
       {posts.map(({ node }) => {
+        console.log(node)
         const title = node.frontmatter.title || node.fields.slug
         return (
           <article key={node.fields.slug}>
@@ -37,6 +39,11 @@ const BlogIndex = ({ data, location }) => {
                 }}
               />
             </section>
+            {node.frontmatter.featuredImage && (
+              <Img
+                fluid={node.frontmatter.featuredImage.childImageSharp.fluid}
+              />
+            )}
           </article>
         )
       })}
@@ -64,6 +71,13 @@ export const pageQuery = graphql`
             date(formatString: "MMMM DD, YYYY")
             title
             description
+            featuredImage {
+              childImageSharp {
+                fluid(maxWidth: 800) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }

@@ -2,6 +2,7 @@
 title: Own it
 date: "2020-09-30"
 description: "Own 100% of your life."
+featuredImage: "city.jpg"
 ---
 
 ![Sewer](./sewer.jpg)
