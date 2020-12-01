@@ -1,6 +1,6 @@
 ---
 title: The Weekly Fish 🐟
-date: "2020-11-23"
+date: "2020-11-30"
 description: "How I climbed out of the dark days of covid quarantine and became a new me."
 featuredImage: "fish.jpg"
 ---
