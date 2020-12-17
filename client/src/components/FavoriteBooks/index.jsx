@@ -22,7 +22,6 @@ const initialFilters = {
   [rankTypes.diamond]: true,
   [rankTypes.gold]: true,
   [rankTypes.silver]: true,
-  [rankTypes.bronze]: true,
 };
 
 const applyFilters = (data, state) => {
@@ -40,7 +39,6 @@ export default function BookRatings() {
   const [state, dispatch] = React.useReducer(filtersReducer, initialFilters);
   const isMobileScreen = useMediaQuery(screenSizeBreakPoints.small);
 
-
   const filteredData = applyFilters(data, state);
 
   return (
@@ -54,13 +52,24 @@ export default function BookRatings() {
       <div>
         <h1>My Book List</h1>
       </div>
-      <div style={{...sharedFonts.cardBody, marginBottom: "8px"}}>
+      <div style={{ ...sharedFonts.cardBody, marginBottom: "8px" }}>
         As an Amazon Associate I earn from qualifying purchases.
       </div>
-      <div style={{ display: "flex", flexDirection: isMobileScreen ? "column" : "row" ,justifyContent: "space-between", width: isMobileScreen ? undefined :"100%", maxWidth: "750px" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: isMobileScreen ? "column" : "row",
+          justifyContent: "center",
+          width: isMobileScreen ? undefined : "100%",
+          maxWidth: "750px",
+        }}
+      >
         {Object.entries(rankTypes).map(([key, value]) => {
           return (
-            <div key={key} style={{ display: "flex", padding: "8px", paddingRight: "16px" }}>
+            <div
+              key={key}
+              style={{ display: "flex", padding: "8px", paddingRight: "16px" }}
+            >
               <Toggle
                 id="testToggle"
                 defaultChecked={state[value]}

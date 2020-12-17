@@ -12,7 +12,6 @@ export const rankTypes = {
   diamond: "Diamond",
   gold: "Gold",
   silver: "Silver",
-  bronze: "Bronze",
 };
 
 export const data = [
@@ -97,6 +96,6 @@ export const data = [
       />
     ),
     categories: [categories.leadership],
-    rank: rankTypes.bronze,
+    rank: rankTypes.silver,
   },
 ];

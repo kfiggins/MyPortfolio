@@ -11,8 +11,6 @@ const getRankIconColor = (rank) => {
       return "#FFD700";
     case rankTypes.silver:
       return "#aaa9ad";
-    case rankTypes.bronze:
-      return "#cd7f32";
   }
 };
 
