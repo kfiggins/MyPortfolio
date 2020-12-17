@@ -1,6 +1,7 @@
 import React from "react";
 import "react-toggle/style.css";
 import Toggle from "react-toggle";
+import ReactTooltip from "react-tooltip";
 
 import { sharedFonts, screenSizeBreakPoints } from "../../style/variables";
 import BookCard from "./BookCard";
@@ -18,10 +19,17 @@ const filtersReducer = (state, action) => {
   }
 };
 
+//TODO: combine these two objects into rank types. Change from string into Config
 const initialFilters = {
   [rankTypes.diamond]: true,
   [rankTypes.gold]: true,
   [rankTypes.silver]: true,
+};
+
+const rankTypeToolTips = {
+  [rankTypes.diamond]: "Books I will regularly reference",
+  [rankTypes.gold]: "Books I will read once every few years",
+  [rankTypes.silver]: "Books worth reading at least once",
 };
 
 const applyFilters = (data, state) => {
@@ -69,7 +77,12 @@ export default function BookRatings() {
             <div
               key={key}
               style={{ display: "flex", padding: "8px", paddingRight: "16px" }}
+              data-tip
+              data-for={value}
             >
+              <ReactTooltip id={value} place="top" type="dark" effect="float">
+                <span>{rankTypeToolTips[value]}</span>
+              </ReactTooltip>
               <Toggle
                 id="testToggle"
                 defaultChecked={state[value]}
