@@ -12,17 +12,17 @@ import Navigation from "./components/shared/Navigation";
 import TodoApp from "./components/todoApp/TodoApp";
 import FavoriteBooks from "./components/FavoriteBooks";
 import { useMediaQuery } from "./hooks/useMediaQuery";
-import {screenSizeBreakPoints} from "./style/variables"
+import { screenSizeBreakPoints } from "./style/variables";
 
 // Set up toast
 toast.configure();
 
 const menuItems = [
   { name: "Home", link: "/", isMobile: true },
-  { name: "Components", link: "/components", isMobile: false },
+  // { name: "Components", link: "/components", isMobile: false },
   { name: "Favorite Books", link: "/books", isMobile: true },
-  { name: "To-Do App", link: "/todo", isMobile: true },
-  { name: "GitHub Repo App", link: "/gitHubRepo", isMobile: true },
+  // { name: "To-Do App", link: "/todo", isMobile: true },
+  // { name: "GitHub Repo App", link: "/gitHubRepo", isMobile: true },
   { name: "Blog", externalLink: "https://blog.kfiggins.com/", isMobile: true },
 ];
 
