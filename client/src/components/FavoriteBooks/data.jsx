@@ -1,6 +1,5 @@
 import React from "react";
 
-import { sharedFonts, sharedColors } from "../../style/variables";
 import AmazonImage from "../shared/AmazonImage";
 
 export const categories = {
