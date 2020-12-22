@@ -9,6 +9,8 @@ import Home from "./components/Home";
 import Navigation from "./components/shared/Navigation";
 import FavoriteBooks from "./components/FavoriteBooks";
 import InvestmentGame from "./components/InvestmentGame";
+import InvestmentGameMain from "./components/InvestmentGame/Main";
+
 import { useMediaQuery } from "./hooks/useMediaQuery";
 import { screenSizeBreakPoints } from "./style/variables";
 
@@ -18,7 +20,7 @@ toast.configure();
 const menuItems = [
   { name: "Home", link: "/", isMobile: true },
   { name: "Favorite Books", link: "/books", isMobile: true },
-  // { name: "Investment Game", link: "/investmentGame", isMobile: true },
+  { name: "Investment Game", link: "/investmentGame", isMobile: true },
   { name: "Blog", externalLink: "https://blog.kfiggins.com/", isMobile: true },
 ];
 
@@ -38,7 +40,8 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/books" component={FavoriteBooks} />
-          {/* <Route path="/investmentGame" component={InvestmentGame} /> */}
+          <Route path="/investmentGame/main" component={InvestmentGameMain} />
+          <Route path="/investmentGame" component={InvestmentGame} />
         </Switch>
       </div>
     </Router>
