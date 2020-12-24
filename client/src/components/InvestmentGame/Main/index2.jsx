@@ -18,13 +18,6 @@ function StockItem({ state, dispatch, stockType, label }) {
   );
 }
 
-const goods = [
-  { id: 1, name: "Wood" },
-  { id: 2, name: "Ore" },
-  { id: 3, name: "Food" },
-  { id: 4, name: "Weapons" },
-];
-
 export default function Main() {
   function gameStateReducer(state, action) {
     switch (action.type) {
@@ -45,8 +38,6 @@ export default function Main() {
             ...state.stockC,
             currentPrice: state.stockC.currentPrice * (Math.random() + 0.5),
           },
-          currentLocationId: state.nextLocationId,
-          nextLocationId: undefined,
         };
       }
       case "BUY_STOCK": {
@@ -71,13 +62,6 @@ export default function Main() {
           },
         };
       }
-      case "TRAVEL": {
-        if (state.currentLocationId === action.value) return state;
-        return {
-          ...state,
-          nextLocationId: action.value,
-        };
-      }
       default:
         break;
     }
@@ -86,18 +70,6 @@ export default function Main() {
   const [state, dispatch] = useReducer(gameStateReducer, {
     bankAmount: 50,
     round: 1,
-    currentLocationId: 1,
-    nextLocationId: undefined,
-    locations: [
-      { name: "Location 1", id: 1, goodsPrices: { 1: 5, 2: 10, 3: 20, 4: 50 } },
-      { name: "Location 2", id: 2, goodsPrices: { 1: 7, 2: 8, 3: 20, 4: 50 } },
-      { name: "Location 3", id: 3, goodsPrices: { 1: 9, 2: 18, 3: 20, 4: 50 } },
-      {
-        name: "Location 4",
-        id: 4,
-        goodsPrices: { 1: 15, 2: 12, 3: 20, 4: 50 },
-      },
-    ],
     stockA: {
       amountOwned: 0,
       currentPrice: 5,
@@ -111,9 +83,7 @@ export default function Main() {
       currentPrice: 500,
     },
   });
-  const currentLocation = state.locations.find(
-    (location) => location.id === state.currentLocationId
-  );
+
   return (
     <div>
       <h1>Round: {state.round}</h1>
@@ -127,8 +97,7 @@ export default function Main() {
         )}
       </h2>
       <h3>Amount in Bank: {numberToCurrency(state.bankAmount)}</h3>
-
-      <h3>Resources</h3>
+      {/* <h3>Amount to Invest: {numberToCurrency(state.salary * 0.8)}</h3> */}
       <StockItem
         state={state}
         dispatch={dispatch}
@@ -147,39 +116,6 @@ export default function Main() {
         stockType="stockC"
         label="Stock C"
       />
-
-      <table>
-        {state.locations.map((location) => {
-          const isCurrentLocation = state.currentLocationId === location.id;
-          return (
-            <tr>
-              <td>
-                {isCurrentLocation && <b>X</b>} {location.name}{" "}
-                {state.nextLocationId === location.id
-                  ? "Traveling"
-                  : !isCurrentLocation && (
-                      <button
-                        onClick={() =>
-                          dispatch({ type: "TRAVEL", value: location.id })
-                        }
-                      >
-                        Travel
-                      </button>
-                    )}
-              </td>
-            </tr>
-          );
-        })}
-      </table>
-
-      {goods.map((good) => {
-        return (
-          <div>
-            {good.name}. Current Price: {currentLocation.goodsPrices[good.id]}
-          </div>
-        );
-      })}
-
       <button
         onClick={() => {
           dispatch({ type: "INCREMENT_ROUND" });
