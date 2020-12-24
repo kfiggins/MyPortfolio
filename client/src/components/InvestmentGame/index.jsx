@@ -7,7 +7,7 @@ export default function InvestmentGame() {
       <h1>Welcome to the Investment Game</h1>
       <p>Your goal is to generate the most wealth over 30 turns.</p>
       <p>Good Luck!</p>
-      <Link to={"/investmentGame/main"} className="navigation__link">
+      <Link to={"/investmentGame/main"} style={{ padding: "20px" }}>
         Start
       </Link>
     </div>
