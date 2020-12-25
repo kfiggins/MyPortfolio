@@ -38,6 +38,7 @@ const applyFilters = (data, state) => {
     let keepItem = false;
     Object.entries(state).map(([key, value]) => {
       if (item.rank === key && value) keepItem = true;
+      return null;
     });
     return keepItem;
   });

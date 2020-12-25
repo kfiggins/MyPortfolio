@@ -5,12 +5,12 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 
-import Components from "./components/componentLibrary/Components";
-import GitHubRepoApp from "./components/gitHubRepoApp/GitHubRepoApp";
 import Home from "./components/Home";
 import Navigation from "./components/shared/Navigation";
-import TodoApp from "./components/todoApp/TodoApp";
 import FavoriteBooks from "./components/FavoriteBooks";
+import MerchantGame from "./components/MerchantGame";
+import MerchantGameMain from "./components/MerchantGame/Main";
+
 import { useMediaQuery } from "./hooks/useMediaQuery";
 import { screenSizeBreakPoints } from "./style/variables";
 
@@ -19,10 +19,8 @@ toast.configure();
 
 const menuItems = [
   { name: "Home", link: "/", isMobile: true },
-  // { name: "Components", link: "/components", isMobile: false },
   { name: "Favorite Books", link: "/books", isMobile: true },
-  // { name: "To-Do App", link: "/todo", isMobile: true },
-  // { name: "GitHub Repo App", link: "/gitHubRepo", isMobile: true },
+  { name: "Merchant Game", link: "/merchantGame", isMobile: true },
   { name: "Blog", externalLink: "https://blog.kfiggins.com/", isMobile: true },
 ];
 
@@ -41,10 +39,9 @@ const App = () => {
       <div style={{ padding: "50px" }}>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/components" component={Components} />
           <Route path="/books" component={FavoriteBooks} />
-          <Route path="/todo" component={TodoApp} />
-          <Route path="/gitHubRepo" component={GitHubRepoApp} />
+          <Route path="/merchantGame/main" component={MerchantGameMain} />
+          <Route path="/merchantGame" component={MerchantGame} />
         </Switch>
       </div>
     </Router>

@@ -3,8 +3,8 @@ import React from "react";
 export default function AmazonImage({ aLink, nestedImageSrc, bottomImageSrc }) {
   return (
     <>
-      <a target="_blank" href={aLink}>
-        <img border="0" src={nestedImageSrc} />
+      <a target="_blank" rel="noreferrer" href={aLink}>
+        <img border="0" alt="" src={nestedImageSrc} />
       </a>
       <img
         src={bottomImageSrc}

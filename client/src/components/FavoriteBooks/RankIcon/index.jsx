@@ -1,6 +1,6 @@
 import React from "react";
 import { rankTypes } from "../data";
-import { sharedFonts, sharedColors } from "../../../style/variables";
+import { sharedFonts } from "../../../style/variables";
 
 const getRankIconColor = (rank) => {
   if (!rank) return undefined;
@@ -11,6 +11,8 @@ const getRankIconColor = (rank) => {
       return "#FFD700";
     case rankTypes.silver:
       return "#aaa9ad";
+    default:
+      return "";
   }
 };
 
