@@ -1,22 +1,22 @@
 import React, { useReducer } from "react";
 import { numberToCurrency } from "../../../utils/currencyHelpers";
 
-function StockItem({ state, dispatch, stockType, label }) {
-  return (
-    <p>
-      <strong>{label}:</strong> Amount Owned {state[stockType].amountOwned} at{" "}
-      {numberToCurrency(state[stockType].currentPrice)} a share.{" "}
-      <button onClick={() => dispatch({ type: "BUY_STOCK", value: stockType })}>
-        Buy
-      </button>{" "}
-      <button
-        onClick={() => dispatch({ type: "SELL_STOCK", value: stockType })}
-      >
-        Sell
-      </button>
-    </p>
-  );
-}
+// function StockItem({ state, dispatch, stockType, label }) {
+//   return (
+//     <p>
+//       <strong>{label}:</strong> Amount Owned {state[stockType].amountOwned} at{" "}
+//       {numberToCurrency(state[stockType].currentPrice)} a share.{" "}
+//       <button onClick={() => dispatch({ type: "BUY_STOCK", value: stockType })}>
+//         Buy
+//       </button>{" "}
+//       <button
+//         onClick={() => dispatch({ type: "SELL_STOCK", value: stockType })}
+//       >
+//         Sell
+//       </button>
+//     </p>
+//   );
+// }
 
 const goods = [
   { id: 1, name: "Wood" },
@@ -33,44 +33,61 @@ export default function Main() {
           ...state,
           round: state.round + 1,
           bankAmount: state.bankAmount * 1.01,
-          stockA: {
-            ...state.stockA,
-            currentPrice: state.stockA.currentPrice * (Math.random() + 0.5),
-          },
-          stockB: {
-            ...state.stockB,
-            currentPrice: state.stockB.currentPrice * (Math.random() + 0.5),
-          },
-          stockC: {
-            ...state.stockC,
-            currentPrice: state.stockC.currentPrice * (Math.random() + 0.5),
-          },
+          // stockA: {
+          //   ...state.stockA,
+          //   currentPrice: state.stockA.currentPrice * (Math.random() + 0.5),
+          // },
+          // stockB: {
+          //   ...state.stockB,
+          //   currentPrice: state.stockB.currentPrice * (Math.random() + 0.5),
+          // },
+          // stockC: {
+          //   ...state.stockC,
+          //   currentPrice: state.stockC.currentPrice * (Math.random() + 0.5),
+          // },
           currentLocationId: state.nextLocationId,
           nextLocationId: undefined,
         };
       }
-      case "BUY_STOCK": {
-        if (state.bankAmount < state[action.value].currentPrice) return state;
+      case "BUY_GOOD": {
+        const currentGoodPrice = state.locations.find(
+          (location) => location.id === state.currentLocationId
+        ).goodsPrices[action.value];
+        if (state.bankAmount < currentGoodPrice) return state;
         return {
           ...state,
-          bankAmount: state.bankAmount - state[action.value].currentPrice,
-          [action.value]: {
-            ...state[action.value],
-            amountOwned: state[action.value].amountOwned + 1,
+          bankAmount: state.bankAmount - currentGoodPrice,
+          ownedGoods: {
+            ...state.ownedGoods,
+            [action.value]: state.ownedGoods[action.value] + 1,
           },
         };
       }
-      case "SELL_STOCK": {
-        if (state[action.value].amountOwned <= 0) return state;
+      case "SELL_GOOD": {
+        const currentGoodPrice = state.locations.find(
+          (location) => location.id === state.currentLocationId
+        ).goodsPrices[action.value];
+        if (state.ownedGoods[action.value] <= 0) return state;
         return {
           ...state,
-          bankAmount: state.bankAmount + state[action.value].currentPrice,
-          [action.value]: {
-            ...state[action.value],
-            amountOwned: state[action.value].amountOwned - 1,
+          bankAmount: state.bankAmount + currentGoodPrice,
+          ownedGoods: {
+            ...state.ownedGoods,
+            [action.value]: state.ownedGoods[action.value] - 1,
           },
         };
       }
+      // case "SELL_STOCK": {
+      //   if (state[action.value].amountOwned <= 0) return state;
+      //   return {
+      //     ...state,
+      //     bankAmount: state.bankAmount + state[action.value].currentPrice,
+      //     [action.value]: {
+      //       ...state[action.value],
+      //       amountOwned: state[action.value].amountOwned - 1,
+      //     },
+      //   };
+      // }
       case "TRAVEL": {
         if (state.currentLocationId === action.value) return state;
         return {
@@ -88,6 +105,7 @@ export default function Main() {
     round: 1,
     currentLocationId: 1,
     nextLocationId: undefined,
+    ownedGoods: { 1: 0, 2: 0, 3: 0, 4: 0 },
     locations: [
       { name: "Location 1", id: 1, goodsPrices: { 1: 5, 2: 10, 3: 20, 4: 50 } },
       { name: "Location 2", id: 2, goodsPrices: { 1: 7, 2: 8, 3: 20, 4: 50 } },
@@ -98,18 +116,18 @@ export default function Main() {
         goodsPrices: { 1: 15, 2: 12, 3: 20, 4: 50 },
       },
     ],
-    stockA: {
-      amountOwned: 0,
-      currentPrice: 5,
-    },
-    stockB: {
-      amountOwned: 0,
-      currentPrice: 50,
-    },
-    stockC: {
-      amountOwned: 0,
-      currentPrice: 500,
-    },
+    // stockA: {
+    //   amountOwned: 0,
+    //   currentPrice: 5,
+    // },
+    // stockB: {
+    //   amountOwned: 0,
+    //   currentPrice: 50,
+    // },
+    // stockC: {
+    //   amountOwned: 0,
+    //   currentPrice: 500,
+    // },
   });
   const currentLocation = state.locations.find(
     (location) => location.id === state.currentLocationId
@@ -117,19 +135,18 @@ export default function Main() {
   return (
     <div>
       <h1>Round: {state.round}</h1>
-      <h2>
+      {/* <h2>
         Current Wealth:{" "}
         {numberToCurrency(
-          state.bankAmount +
-            state.stockA.amountOwned * state.stockA.currentPrice +
-            state.stockB.amountOwned * state.stockB.currentPrice +
-            state.stockC.amountOwned * state.stockC.currentPrice
+          state.bankAmount
+          // state.stockA.amountOwned * state.stockA.currentPrice +
+          // state.stockB.amountOwned * state.stockB.currentPrice +
+          // state.stockC.amountOwned * state.stockC.currentPrice
         )}
-      </h2>
-      <h3>Amount in Bank: {numberToCurrency(state.bankAmount)}</h3>
+      </h2> */}
+      <h2>Amount in Bank: {numberToCurrency(state.bankAmount)}</h2>
 
-      <h3>Resources</h3>
-      <StockItem
+      {/* <StockItem
         state={state}
         dispatch={dispatch}
         stockType="stockA"
@@ -146,7 +163,7 @@ export default function Main() {
         dispatch={dispatch}
         stockType="stockC"
         label="Stock C"
-      />
+      /> */}
 
       <table>
         {state.locations.map((location) => {
@@ -171,11 +188,23 @@ export default function Main() {
           );
         })}
       </table>
+      <h3>Resources</h3>
 
       {goods.map((good) => {
         return (
           <div>
-            {good.name}. Current Price: {currentLocation.goodsPrices[good.id]}
+            {good.name}. Current Price: {currentLocation.goodsPrices[good.id]}{" "}
+            <button
+              onClick={() => dispatch({ type: "BUY_GOOD", value: good.id })}
+            >
+              Buy
+            </button>
+            <button
+              onClick={() => dispatch({ type: "SELL_GOOD", value: good.id })}
+            >
+              Sell
+            </button>
+            <b>Owned Goods: {state.ownedGoods[good.id]}</b>
           </div>
         );
       })}
