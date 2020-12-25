@@ -1,52 +1,44 @@
 import React, { useReducer } from "react";
 import { numberToCurrency } from "../../../utils/currencyHelpers";
 
-// function StockItem({ state, dispatch, stockType, label }) {
-//   return (
-//     <p>
-//       <strong>{label}:</strong> Amount Owned {state[stockType].amountOwned} at{" "}
-//       {numberToCurrency(state[stockType].currentPrice)} a share.{" "}
-//       <button onClick={() => dispatch({ type: "BUY_STOCK", value: stockType })}>
-//         Buy
-//       </button>{" "}
-//       <button
-//         onClick={() => dispatch({ type: "SELL_STOCK", value: stockType })}
-//       >
-//         Sell
-//       </button>
-//     </p>
-//   );
-// }
-
 const goods = [
-  { id: 1, name: "Wood" },
-  { id: 2, name: "Ore" },
-  { id: 3, name: "Food" },
-  { id: 4, name: "Weapons" },
+  { id: 1, name: "Wood", minPrice: 25, maxPrice: 75 },
+  { id: 2, name: "Gold", minPrice: 100, maxPrice: 250 },
+  { id: 3, name: "Food", minPrice: 10, maxPrice: 50 },
+  { id: 4, name: "Stone", minPrice: 50, maxPrice: 90 },
 ];
+
+function updateGoodsPricesOnLocations(locations) {
+  const newLocations = locations.map((location) => {
+    let newGoodsPrices = {};
+    goods.map((good) => {
+      const maxMinDiff = good.maxPrice - good.minPrice;
+      const currentPrice = location.goodsPrices[good.id];
+      const randomPositiveNegative = Math.random() > 0.5 ? 1 : -1;
+      newGoodsPrices[good.id] =
+        currentPrice +
+        maxMinDiff * Math.random() * 0.1 * randomPositiveNegative;
+    });
+    return {
+      ...location,
+      goodsPrices: newGoodsPrices,
+    };
+  });
+  return newLocations;
+}
 
 export default function Main() {
   function gameStateReducer(state, action) {
     switch (action.type) {
       case "INCREMENT_ROUND": {
+        const newLocations = updateGoodsPricesOnLocations(state.locations);
         return {
           ...state,
           round: state.round + 1,
           bankAmount: state.bankAmount * 1.01,
-          // stockA: {
-          //   ...state.stockA,
-          //   currentPrice: state.stockA.currentPrice * (Math.random() + 0.5),
-          // },
-          // stockB: {
-          //   ...state.stockB,
-          //   currentPrice: state.stockB.currentPrice * (Math.random() + 0.5),
-          // },
-          // stockC: {
-          //   ...state.stockC,
-          //   currentPrice: state.stockC.currentPrice * (Math.random() + 0.5),
-          // },
-          currentLocationId: state.nextLocationId,
+          currentLocationId: state.nextLocationId || state.currentLocationId,
           nextLocationId: undefined,
+          locations: newLocations,
         };
       }
       case "BUY_GOOD": {
@@ -77,17 +69,6 @@ export default function Main() {
           },
         };
       }
-      // case "SELL_STOCK": {
-      //   if (state[action.value].amountOwned <= 0) return state;
-      //   return {
-      //     ...state,
-      //     bankAmount: state.bankAmount + state[action.value].currentPrice,
-      //     [action.value]: {
-      //       ...state[action.value],
-      //       amountOwned: state[action.value].amountOwned - 1,
-      //     },
-      //   };
-      // }
       case "TRAVEL": {
         if (state.currentLocationId === action.value) return state;
         return {
@@ -107,27 +88,27 @@ export default function Main() {
     nextLocationId: undefined,
     ownedGoods: { 1: 0, 2: 0, 3: 0, 4: 0 },
     locations: [
-      { name: "Location 1", id: 1, goodsPrices: { 1: 5, 2: 10, 3: 20, 4: 50 } },
-      { name: "Location 2", id: 2, goodsPrices: { 1: 7, 2: 8, 3: 20, 4: 50 } },
-      { name: "Location 3", id: 3, goodsPrices: { 1: 9, 2: 18, 3: 20, 4: 50 } },
+      {
+        name: "Location 1",
+        id: 1,
+        goodsPrices: { 1: 30, 2: 105, 3: 20, 4: 52 },
+      },
+      {
+        name: "Location 2",
+        id: 2,
+        goodsPrices: { 1: 31, 2: 110, 3: 25, 4: 53 },
+      },
+      {
+        name: "Location 3",
+        id: 3,
+        goodsPrices: { 1: 32, 2: 110, 3: 25, 4: 55 },
+      },
       {
         name: "Location 4",
         id: 4,
-        goodsPrices: { 1: 15, 2: 12, 3: 20, 4: 50 },
+        goodsPrices: { 1: 33, 2: 110, 3: 25, 4: 57 },
       },
     ],
-    // stockA: {
-    //   amountOwned: 0,
-    //   currentPrice: 5,
-    // },
-    // stockB: {
-    //   amountOwned: 0,
-    //   currentPrice: 50,
-    // },
-    // stockC: {
-    //   amountOwned: 0,
-    //   currentPrice: 500,
-    // },
   });
   const currentLocation = state.locations.find(
     (location) => location.id === state.currentLocationId
@@ -135,36 +116,7 @@ export default function Main() {
   return (
     <div>
       <h1>Round: {state.round}</h1>
-      {/* <h2>
-        Current Wealth:{" "}
-        {numberToCurrency(
-          state.bankAmount
-          // state.stockA.amountOwned * state.stockA.currentPrice +
-          // state.stockB.amountOwned * state.stockB.currentPrice +
-          // state.stockC.amountOwned * state.stockC.currentPrice
-        )}
-      </h2> */}
       <h2>Amount in Bank: {numberToCurrency(state.bankAmount)}</h2>
-
-      {/* <StockItem
-        state={state}
-        dispatch={dispatch}
-        stockType="stockA"
-        label="Stock A"
-      />
-      <StockItem
-        state={state}
-        dispatch={dispatch}
-        stockType="stockB"
-        label="Stock B"
-      />
-      <StockItem
-        state={state}
-        dispatch={dispatch}
-        stockType="stockC"
-        label="Stock C"
-      /> */}
-
       <table>
         {state.locations.map((location) => {
           const isCurrentLocation = state.currentLocationId === location.id;
@@ -192,8 +144,9 @@ export default function Main() {
 
       {goods.map((good) => {
         return (
-          <div>
-            {good.name}. Current Price: {currentLocation.goodsPrices[good.id]}{" "}
+          <div key={good.id}>
+            {good.name}. Current Price:{" "}
+            {numberToCurrency(currentLocation.goodsPrices[good.id])}{" "}
             <button
               onClick={() => dispatch({ type: "BUY_GOOD", value: good.id })}
             >
