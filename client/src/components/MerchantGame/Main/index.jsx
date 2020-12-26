@@ -55,6 +55,21 @@ export default function Main() {
           },
         };
       }
+      case "BUY_MAX_GOOD": {
+        const currentGoodPrice = state.locations.find(
+          (location) => location.id === state.currentLocationId
+        ).goodsPrices[action.value];
+        if (state.bankAmount < currentGoodPrice) return state;
+        const itemAmount = Math.floor(state.bankAmount / currentGoodPrice);
+        return {
+          ...state,
+          bankAmount: state.bankAmount - itemAmount * currentGoodPrice,
+          ownedGoods: {
+            ...state.ownedGoods,
+            [action.value]: state.ownedGoods[action.value] + itemAmount,
+          },
+        };
+      }
       case "SELL_GOOD": {
         const currentGoodPrice = state.locations.find(
           (location) => location.id === state.currentLocationId
@@ -66,6 +81,21 @@ export default function Main() {
           ownedGoods: {
             ...state.ownedGoods,
             [action.value]: state.ownedGoods[action.value] - 1,
+          },
+        };
+      }
+      case "SELL_MAX_GOOD": {
+        const currentGoodPrice = state.locations.find(
+          (location) => location.id === state.currentLocationId
+        ).goodsPrices[action.value];
+        if (state.ownedGoods[action.value] <= 0) return state;
+        const itemAmount = state.ownedGoods[action.value];
+        return {
+          ...state,
+          bankAmount: state.bankAmount + itemAmount * currentGoodPrice,
+          ownedGoods: {
+            ...state.ownedGoods,
+            [action.value]: state.ownedGoods[action.value] - itemAmount,
           },
         };
       }
@@ -153,9 +183,21 @@ export default function Main() {
               Buy
             </button>
             <button
+              onClick={() => dispatch({ type: "BUY_MAX_GOOD", value: good.id })}
+            >
+              Buy Max
+            </button>
+            <button
               onClick={() => dispatch({ type: "SELL_GOOD", value: good.id })}
             >
               Sell
+            </button>
+            <button
+              onClick={() =>
+                dispatch({ type: "SELL_MAX_GOOD", value: good.id })
+              }
+            >
+              Sell Max
             </button>
             <b>Owned Goods: {state.ownedGoods[good.id]}</b>
           </div>
