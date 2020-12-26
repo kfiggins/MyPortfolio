@@ -2,10 +2,10 @@ import React, { useReducer } from "react";
 import { numberToCurrency } from "../../../utils/currencyHelpers";
 
 const goods = [
-  { id: 1, name: "Wood", minPrice: 25, maxPrice: 75 },
-  { id: 2, name: "Gold", minPrice: 100, maxPrice: 250 },
-  { id: 3, name: "Food", minPrice: 10, maxPrice: 50 },
-  { id: 4, name: "Stone", minPrice: 50, maxPrice: 90 },
+  { id: 1, name: "Wood", minPrice: 20, maxPrice: 60 },
+  { id: 2, name: "Gold", minPrice: 100, maxPrice: 500 },
+  { id: 3, name: "Food", minPrice: 10, maxPrice: 25 },
+  { id: 4, name: "Stone", minPrice: 50, maxPrice: 200 },
 ];
 
 function updateGoodsPricesOnLocations(locations) {
@@ -15,9 +15,17 @@ function updateGoodsPricesOnLocations(locations) {
       const maxMinDiff = good.maxPrice - good.minPrice;
       const currentPrice = location.goodsPrices[good.id];
       const randomPositiveNegative = Math.random() > 0.5 ? 1 : -1;
-      newGoodsPrices[good.id] =
+      const nextGoodPrice =
         currentPrice +
         maxMinDiff * Math.random() * 0.1 * randomPositiveNegative;
+      //TODO: Refactor this ugly ternary.
+      const finalGoodPrice =
+        nextGoodPrice > good.maxPrice
+          ? good.maxPrice
+          : nextGoodPrice < good.minPrice
+          ? good.minPrice
+          : nextGoodPrice;
+      newGoodsPrices[good.id] = finalGoodPrice;
     });
     return {
       ...location,
@@ -121,22 +129,22 @@ export default function Main() {
       {
         name: "Location 1",
         id: 1,
-        goodsPrices: { 1: 30, 2: 105, 3: 20, 4: 52 },
+        goodsPrices: { 1: 24, 2: 105, 3: 15, 4: 52 },
       },
       {
         name: "Location 2",
         id: 2,
-        goodsPrices: { 1: 31, 2: 110, 3: 25, 4: 53 },
+        goodsPrices: { 1: 26, 2: 110, 3: 17, 4: 53 },
       },
       {
         name: "Location 3",
         id: 3,
-        goodsPrices: { 1: 32, 2: 110, 3: 25, 4: 55 },
+        goodsPrices: { 1: 27, 2: 110, 3: 17, 4: 55 },
       },
       {
         name: "Location 4",
         id: 4,
-        goodsPrices: { 1: 33, 2: 110, 3: 25, 4: 57 },
+        goodsPrices: { 1: 28, 2: 110, 3: 17, 4: 57 },
       },
     ],
   });
@@ -175,7 +183,7 @@ export default function Main() {
       {goods.map((good) => {
         return (
           <div key={good.id}>
-            {good.name}. Current Price:{" "}
+            <b>{good.name}.</b> Current Price:{" "}
             {numberToCurrency(currentLocation.goodsPrices[good.id])}{" "}
             <button
               onClick={() => dispatch({ type: "BUY_GOOD", value: good.id })}
@@ -199,7 +207,11 @@ export default function Main() {
             >
               Sell Max
             </button>
-            <b>Owned Goods: {state.ownedGoods[good.id]}</b>
+            <b>
+              Owned {good.name}: {state.ownedGoods[good.id]}
+            </b>
+            <br />
+            <br />
           </div>
         );
       })}
