@@ -8,6 +8,8 @@ const goods = [
   { id: 4, name: "Stone", minPrice: 50, maxPrice: 200 },
 ];
 
+const GOODS_PERCENT_CHANGE_PER_ROUND = 0.1;
+
 function updateGoodsPricesOnLocations(locations) {
   const newLocations = locations.map((location) => {
     let newGoodsPrices = {};
@@ -17,7 +19,10 @@ function updateGoodsPricesOnLocations(locations) {
       const randomPositiveNegative = Math.random() > 0.5 ? 1 : -1;
       const nextGoodPrice =
         currentPrice +
-        maxMinDiff * Math.random() * 0.1 * randomPositiveNegative;
+        maxMinDiff *
+          Math.random() *
+          GOODS_PERCENT_CHANGE_PER_ROUND *
+          randomPositiveNegative;
       //TODO: Refactor this ugly ternary.
       const finalGoodPrice =
         nextGoodPrice > good.maxPrice
