@@ -1,14 +1,61 @@
 import React, { useReducer } from "react";
 import { numberToCurrency } from "../../../utils/currencyHelpers";
 
+//TODO: Make consts for everything needed
+//TODO: Make helper functions where needed
+//TODO: Add comments where needed
+//TODO: Break out into components where needed
+//TODO: Add styling, make it look nice, mobile first
+//TODO: Make sure things are split up well in a functional manner so I can easily extend later on.
+//TODO: Write some tests around main logic
+
 const goods = [
-  { id: 1, name: "Wood", minPrice: 20, maxPrice: 60 },
-  { id: 2, name: "Gold", minPrice: 100, maxPrice: 500 },
-  { id: 3, name: "Food", minPrice: 10, maxPrice: 25 },
-  { id: 4, name: "Stone", minPrice: 50, maxPrice: 200 },
+  {
+    id: 1,
+    name: "Wood",
+    minPrice: 20,
+    maxPrice: 60,
+    buildingName: "Lumber Yard",
+    buildingCost: 2000,
+  },
+  {
+    id: 2,
+    name: "Gold",
+    minPrice: 100,
+    maxPrice: 500,
+    buildingName: "Gold Mine",
+    buildingCost: 15000,
+  },
+  {
+    id: 3,
+    name: "Food",
+    minPrice: 10,
+    maxPrice: 25,
+    buildingName: "Farm",
+    buildingCost: 850,
+  },
+  {
+    id: 4,
+    name: "Stone",
+    minPrice: 50,
+    maxPrice: 200,
+    buildingName: "Quarry",
+    buildingCost: 6250,
+  },
 ];
 
 const GOODS_PERCENT_CHANGE_PER_ROUND = 0.1;
+const AMOUNT_OF_ROUNDS = 30;
+
+function getGoodByLocation(location) {
+  return goods.find((good) => good.id === location.goodTypeId);
+}
+
+function getTotalGoodsAmountByLocation(location) {
+  return location.buildings.reduce((acc, cur) => {
+    return acc + cur.currentResources;
+  }, 0);
+}
 
 function updateGoodsPricesOnLocations(locations) {
   const newLocations = locations.map((location) => {
@@ -40,18 +87,31 @@ function updateGoodsPricesOnLocations(locations) {
   return newLocations;
 }
 
+function updateBuildingsOnLocations(locations) {
+  const newLocations = locations.map((location) => {
+    if (location.buildings.length <= 0) return location;
+    const newBuildings = location.buildings.map((building) => ({
+      ...building,
+      currentResources: building.currentResources + 10,
+    }));
+    return { ...location, buildings: newBuildings };
+  });
+  return newLocations;
+}
+
 export default function Main() {
   function gameStateReducer(state, action) {
     switch (action.type) {
       case "INCREMENT_ROUND": {
         const newLocations = updateGoodsPricesOnLocations(state.locations);
+        const finalLocations = updateBuildingsOnLocations(newLocations);
         return {
           ...state,
           round: state.round + 1,
           bankAmount: state.bankAmount * 1.01,
           currentLocationId: state.nextLocationId || state.currentLocationId,
           nextLocationId: undefined,
-          locations: newLocations,
+          locations: finalLocations,
         };
       }
       case "BUY_GOOD": {
@@ -119,8 +179,48 @@ export default function Main() {
           nextLocationId: action.value,
         };
       }
+      case "BUY_BUILDING": {
+        let newBankAmount = state.bankAmount;
+        const newLocations = state.locations.map((location) => {
+          if (state.currentLocationId !== location.id) return location;
+          const goodOnLocation = getGoodByLocation(location);
+          if (state.bankAmount < goodOnLocation.buildingCost) {
+            return location;
+          }
+          newBankAmount = state.bankAmount - goodOnLocation.buildingCost;
+          const newBuildings = [...location.buildings, { currentResources: 0 }];
+          return { ...location, buildings: newBuildings };
+        });
+        return {
+          ...state,
+          bankAmount: newBankAmount,
+          locations: newLocations,
+        };
+      }
+      case "GATHER_GOODS": {
+        const currentLocation = action.value;
+        const totalGoodsAtLocation = getTotalGoodsAmountByLocation(
+          currentLocation
+        );
+        const newGoodsAmount =
+          state.ownedGoods[currentLocation.goodTypeId] + totalGoodsAtLocation;
+        const newOwnedGoods = {
+          ...state.ownedGoods,
+          [currentLocation.goodTypeId]: newGoodsAmount,
+        };
+
+        const newLocations = state.locations.map((location) => {
+          if (location.id !== state.currentLocationId) return location;
+          const newBuildings = location.buildings.map((building) => ({
+            ...building,
+            currentResources: 0,
+          }));
+          return { ...location, buildings: newBuildings };
+        });
+        return { ...state, ownedGoods: newOwnedGoods, locations: newLocations };
+      }
       default:
-        break;
+        return state;
     }
   }
 
@@ -132,24 +232,32 @@ export default function Main() {
     ownedGoods: { 1: 0, 2: 0, 3: 0, 4: 0 },
     locations: [
       {
-        name: "Location 1",
+        name: "Mirkwood",
         id: 1,
+        goodTypeId: 1,
         goodsPrices: { 1: 24, 2: 105, 3: 15, 4: 52 },
+        buildings: [],
       },
       {
-        name: "Location 2",
+        name: "Mines of Moria",
         id: 2,
+        goodTypeId: 2,
         goodsPrices: { 1: 26, 2: 110, 3: 17, 4: 53 },
+        buildings: [],
       },
       {
-        name: "Location 3",
+        name: "The Shire",
         id: 3,
+        goodTypeId: 3,
         goodsPrices: { 1: 27, 2: 110, 3: 17, 4: 55 },
+        buildings: [],
       },
       {
-        name: "Location 4",
+        name: "Misty Mountains",
         id: 4,
+        goodTypeId: 4,
         goodsPrices: { 1: 28, 2: 110, 3: 17, 4: 57 },
+        buildings: [],
       },
     ],
   });
@@ -163,8 +271,9 @@ export default function Main() {
       <table>
         {state.locations.map((location) => {
           const isCurrentLocation = state.currentLocationId === location.id;
+          const currentGood = getGoodByLocation(location);
           return (
-            <tr>
+            <tr key={location.id}>
               <td>
                 {isCurrentLocation && <b>X</b>} {location.name}{" "}
                 {state.nextLocationId === location.id
@@ -178,6 +287,23 @@ export default function Main() {
                         Travel
                       </button>
                     )}
+                {isCurrentLocation && (
+                  <button onClick={() => dispatch({ type: "BUY_BUILDING" })}>
+                    Build {currentGood.buildingName} for{" "}
+                    {numberToCurrency(currentGood.buildingCost)}
+                  </button>
+                )}
+                Total Buildings {location.buildings.length} with{" "}
+                {getTotalGoodsAmountByLocation(location)} {currentGood.name}
+                {isCurrentLocation && (
+                  <button
+                    onClick={() =>
+                      dispatch({ type: "GATHER_GOODS", value: location })
+                    }
+                  >
+                    Gather {currentGood.name}
+                  </button>
+                )}
               </td>
             </tr>
           );
@@ -220,14 +346,17 @@ export default function Main() {
           </div>
         );
       })}
-
-      <button
-        onClick={() => {
-          dispatch({ type: "INCREMENT_ROUND" });
-        }}
-      >
-        Next Round
-      </button>
+      {state.round < AMOUNT_OF_ROUNDS ? (
+        <button
+          onClick={() => {
+            dispatch({ type: "INCREMENT_ROUND" });
+          }}
+        >
+          Next Round
+        </button>
+      ) : (
+        "Game Over"
+      )}
     </div>
   );
 }
