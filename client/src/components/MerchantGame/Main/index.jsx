@@ -45,7 +45,7 @@ const goods = [
 ];
 
 const GOODS_PERCENT_CHANGE_PER_ROUND = 0.1;
-const AMOUNT_OF_ROUNDS = 30;
+const AMOUNT_OF_ROUNDS = 50;
 
 function getGoodByLocation(location) {
   return goods.find((good) => good.id === location.goodTypeId);
