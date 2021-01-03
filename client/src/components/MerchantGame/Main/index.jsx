@@ -131,7 +131,7 @@ export default function Main() {
             );
           })}
         </div>
-        <h3>Resources</h3>
+        <h4>Resources at {currentLocation.name}</h4>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {goods.map((good) => {
             return (
