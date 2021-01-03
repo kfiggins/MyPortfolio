@@ -9,7 +9,7 @@ import {
 export const goods = [
   {
     id: 1,
-    name: "Wood",
+    name: "Wood 🌳",
     minPrice: 20,
     maxPrice: 60,
     buildingName: "Lumber Yard",
@@ -17,7 +17,7 @@ export const goods = [
   },
   {
     id: 2,
-    name: "Gold",
+    name: "Gold ⛏",
     minPrice: 100,
     maxPrice: 500,
     buildingName: "Gold Mine",
@@ -25,7 +25,7 @@ export const goods = [
   },
   {
     id: 3,
-    name: "Food",
+    name: "Food 🌽",
     minPrice: 10,
     maxPrice: 25,
     buildingName: "Farm",
@@ -33,7 +33,7 @@ export const goods = [
   },
   {
     id: 4,
-    name: "Stone",
+    name: "Stone 🔥",
     minPrice: 50,
     maxPrice: 200,
     buildingName: "Quarry",
@@ -43,16 +43,23 @@ export const goods = [
 
 // CONSTS
 export const GOODS_PERCENT_CHANGE_PER_ROUND = 0.1;
-export const AMOUNT_OF_ROUNDS = 50;
+export const AMOUNT_OF_ROUNDS = 52;
 
 // Initial State
 export const initialState = {
   bankAmount: 50,
   round: 1,
-  currentLocationId: 1,
+  currentLocationId: 3,
   nextLocationId: undefined,
   ownedGoods: { 1: 0, 2: 0, 3: 0, 4: 0 },
   locations: [
+    {
+      name: "The Shire",
+      id: 3,
+      goodTypeId: 3,
+      goodsPrices: { 1: 27, 2: 110, 3: 13, 4: 55 },
+      buildings: [],
+    },
     {
       name: "Mirkwood",
       id: 1,
@@ -61,24 +68,17 @@ export const initialState = {
       buildings: [],
     },
     {
+      name: "Mordor",
+      id: 4,
+      goodTypeId: 4,
+      goodsPrices: { 1: 28, 2: 110, 3: 17, 4: 57 },
+      buildings: [],
+    },
+    {
       name: "Mines of Moria",
       id: 2,
       goodTypeId: 2,
       goodsPrices: { 1: 26, 2: 110, 3: 17, 4: 53 },
-      buildings: [],
-    },
-    {
-      name: "The Shire",
-      id: 3,
-      goodTypeId: 3,
-      goodsPrices: { 1: 27, 2: 110, 3: 17, 4: 55 },
-      buildings: [],
-    },
-    {
-      name: "Misty Mountains",
-      id: 4,
-      goodTypeId: 4,
-      goodsPrices: { 1: 28, 2: 110, 3: 17, 4: 57 },
       buildings: [],
     },
   ],
