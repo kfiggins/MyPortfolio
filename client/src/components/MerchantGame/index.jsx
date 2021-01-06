@@ -8,7 +8,15 @@ export default function MerchantGame() {
   let { path } = useRouteMatch();
   return (
     <div>
-      <h1>Middle Earth Merchant</h1>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <h1>Middle Earth Merchant</h1>
+      </div>
 
       <Switch>
         <Route path={`${path}/main`} component={MerchantGameMain} />
