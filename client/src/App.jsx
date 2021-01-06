@@ -9,7 +9,6 @@ import Home from "./components/Home";
 import Navigation from "./components/shared/Navigation";
 import FavoriteBooks from "./components/FavoriteBooks";
 import MerchantGame from "./components/MerchantGame";
-import MerchantGameMain from "./components/MerchantGame/Main";
 
 import { useMediaQuery } from "./hooks/useMediaQuery";
 import { screenSizeBreakPoints } from "./style/variables";
@@ -40,7 +39,6 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/books" component={FavoriteBooks} />
-          <Route path="/merchantGame/main" component={MerchantGameMain} />
           <Route path="/merchantGame" component={MerchantGame} />
         </Switch>
       </div>

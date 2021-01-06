@@ -1,8 +1,8 @@
 import React, { useReducer } from "react";
 import { numberToCurrency } from "../../../utils/currencyHelpers";
 import ReactTooltip from "react-tooltip";
+import { Link } from "react-router-dom";
 
-// import mainMap from "../../../assets/merchantGame/map.jpg";
 import {
   goods,
   AMOUNT_OF_ROUNDS,
@@ -207,7 +207,7 @@ export default function Main() {
               <span style={{ fontSize: "20px" }}>Next Round</span>
             </button>
           ) : (
-            <button>Game Over</button>
+            <Link to={`/merchantGame/highScores`}>Game Over</Link>
           )}
         </div>
       </div>

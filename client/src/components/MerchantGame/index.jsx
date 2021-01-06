@@ -1,15 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
+import MerchantGameMain from "./Main";
+import Start from "./Start";
+import HighScores from "./HighScores";
 
 export default function MerchantGame() {
+  let { path } = useRouteMatch();
   return (
     <div>
-      <h1>Welcome to the Merchant Game</h1>
-      <p>Your goal is to generate the most wealth over 52 turns.</p>
-      <p>Good Luck!</p>
-      <Link to={"/merchantGame/main"} style={{ padding: "20px" }}>
-        Start
-      </Link>
+      <h1>Middle Earth Merchant</h1>
+
+      <Switch>
+        <Route path={`${path}/main`} component={MerchantGameMain} />
+        <Route path={`${path}/highScores`} component={HighScores} />
+        <Route path={`${path}/`} component={Start} />
+      </Switch>
     </div>
   );
 }
