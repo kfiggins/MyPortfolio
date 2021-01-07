@@ -1,7 +1,9 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import { numberToCurrency } from "../../../utils/currencyHelpers";
 import ReactTooltip from "react-tooltip";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 import {
   goods,
@@ -18,9 +20,24 @@ import {
 
 export default function Main() {
   const [state, dispatch] = useReducer(gameStateReducer, initialState);
+  const [userName, setUserName] = useState("");
+  const history = useHistory();
   const currentLocation = state.locations.find(
     (location) => location.id === state.currentLocationId
   );
+
+  const handleSaveScore = async () => {
+    const data = { name: userName, score: state.bankAmount.toFixed(2) };
+    await fetch(
+      "https://238l6855mf.execute-api.us-east-2.amazonaws.com/prod/highscores",
+      {
+        method: "POST",
+        body: JSON.stringify(data),
+      }
+    );
+    history.push(`/merchantGame/highScores/${state.bankAmount}`);
+  };
+
   return (
     <div
       style={{
@@ -35,10 +52,6 @@ export default function Main() {
           <h2>Week {state.round}</h2>
           <h2>Bank: {numberToCurrency(state.bankAmount)}</h2>
         </div>
-        {/* <img
-          src={mainMap}
-          style={{ maxWidth: "600px", borderRadius: "50px" }}
-        /> */}
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {state.locations.map((location) => {
             const isCurrentLocation = state.currentLocationId === location.id;
@@ -207,7 +220,41 @@ export default function Main() {
               <span style={{ fontSize: "20px" }}>Next Round</span>
             </button>
           ) : (
-            <Link to={`/merchantGame/highScores`}>Game Over</Link>
+            <Popup
+              trigger={<button>Game Over (Click for stats)</button>}
+              modal
+              position="right center"
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  padding: "32px",
+                }}
+              >
+                <h2>Game Over</h2>
+                <div
+                  style={{
+                    marginBottom: "16px",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <label>Name</label>
+                  <input
+                    value={userName}
+                    onChange={(e) => setUserName(e.target.value)}
+                    type="text"
+                  />
+                </div>
+                <button
+                  to={`/merchantGame/highScores`}
+                  onClick={handleSaveScore}
+                >
+                  See Stats
+                </button>
+              </div>
+            </Popup>
           )}
         </div>
       </div>

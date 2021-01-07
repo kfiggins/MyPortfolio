@@ -20,7 +20,7 @@ export default function MerchantGame() {
 
       <Switch>
         <Route path={`${path}/main`} component={MerchantGameMain} />
-        <Route path={`${path}/highScores`} component={HighScores} />
+        <Route path={`${path}/highScores/:finalScore`} component={HighScores} />
         <Route path={`${path}/`} component={Start} />
       </Switch>
     </div>
