@@ -1,9 +1,11 @@
 import React, { useReducer, useState } from "react";
-import { numberToCurrency } from "../../../utils/currencyHelpers";
 import ReactTooltip from "react-tooltip";
-import { useHistory } from "react-router-dom";
 import Popup from "reactjs-popup";
+import { useHistory } from "react-router-dom";
 import "reactjs-popup/dist/index.css";
+
+import Button from "../../shared/Button";
+import { numberToCurrency } from "../../../utils/currencyHelpers";
 
 import {
   goods,
@@ -59,7 +61,7 @@ export default function Main() {
             return (
               <div
                 style={{
-                  border: "1px solid black",
+                  boxShadow: "0 8px 16px 0 rgba(0,0,0,0.2)",
                   borderRadius: "5px",
                   padding: "24px 10px",
                   margin: "16px",
@@ -110,7 +112,7 @@ export default function Main() {
                       </div>
                     )}
                 <div style={{ marginBottom: "8px" }}>
-                  Total Buildings {location.buildings.length} with{" "}
+                  {location.buildings.length} {currentGood.buildingName}'s with{" "}
                   {getTotalGoodsAmountByLocation(location)} {currentGood.name}
                 </div>
                 <div style={{ display: "flex" }}>
@@ -212,16 +214,18 @@ export default function Main() {
           }}
         >
           {state.round < AMOUNT_OF_ROUNDS ? (
-            <button
+            <Button
+              primary
+              style={{ fontSize: "16px" }}
               onClick={() => {
                 dispatch({ type: "INCREMENT_ROUND" });
               }}
             >
-              <span style={{ fontSize: "20px" }}>Next Round</span>
-            </button>
+              Next Week {">"}
+            </Button>
           ) : (
             <Popup
-              trigger={<button>Game Over (Click for stats)</button>}
+              trigger={<Button danger>Game Over (Click for stats)</Button>}
               modal
               position="right center"
             >
@@ -247,12 +251,9 @@ export default function Main() {
                     type="text"
                   />
                 </div>
-                <button
-                  to={`/merchantGame/highScores`}
-                  onClick={handleSaveScore}
-                >
+                <Button primary onClick={handleSaveScore}>
                   See Stats
-                </button>
+                </Button>
               </div>
             </Popup>
           )}

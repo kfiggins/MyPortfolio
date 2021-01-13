@@ -65,6 +65,7 @@ export default function Button({
     padding: ${padding};
     cursor: pointer;
     border: 2px solid transparent;
+    border-radius: 5px;
 
     &:focus {
       outline: 0;

@@ -19,32 +19,83 @@ export default function HighScores() {
     getHighScores();
   }, []);
   return (
-    <div>
-      <h1>Stats</h1>
-      <p>
-        You are the {getOrdinalSuffixWithNumber(highScores.Count)} person to
-        play this game.
-      </p>
-      <p>
-        Your total wealth at the end of {AMOUNT_OF_ROUNDS} weeks was{" "}
-        {finalScore && numberToCurrency(Number(finalScore))}
-      </p>
-      <p>
-        The average wealth attained across all players of Middle Earth Merchant
-        is {numberToCurrency(Number(highScores.Average))}
-      </p>
-      <h1>High Scores</h1>
-      <ol>
-        {highScores &&
-          highScores.Items &&
-          highScores.Items.map((highScore) => (
-            <li>
-              Name: {highScore.name} Score:{" "}
-              {numberToCurrency(Number(highScore.score))}
-              {/* Name: {highScore.name} Score: {numberToCurrency(highScore.score)} */}
-            </li>
-          ))}
-      </ol>
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+      }}
+    >
+      <div
+        style={{
+          boxShadow: "0 8px 16px 0 rgba(0,0,0,0.2)",
+          borderRadius: "5px",
+          padding: "24px 10px",
+          margin: "16px",
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          width: "500px",
+        }}
+      >
+        <h1>Stats</h1>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexDirection: "column",
+          }}
+        >
+          <p>
+            <div style={{ fontWeight: "700", fontSize: "24px" }}>
+              {getOrdinalSuffixWithNumber(highScores.Count)}
+            </div>{" "}
+            Person/bot to play this game.
+          </p>
+          <p>
+            <div style={{ fontWeight: "700", fontSize: "24px" }}>
+              {finalScore && numberToCurrency(Number(finalScore))}
+            </div>{" "}
+            Total wealth at the end of {AMOUNT_OF_ROUNDS} weeks
+          </p>
+          <p>
+            <div style={{ fontWeight: "700", fontSize: "24px" }}>
+              {numberToCurrency(Number(highScores.Average))}
+            </div>{" "}
+            Average wealth attained across all players
+          </p>
+        </div>
+      </div>
+      <div
+        style={{
+          boxShadow: "0 8px 16px 0 rgba(0,0,0,0.2)",
+          borderRadius: "5px",
+          padding: "24px 10px",
+          margin: "16px",
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          width: "500px",
+        }}
+      >
+        <h1>High Scores</h1>
+        <div>
+          {highScores &&
+            highScores.Items &&
+            highScores.Items.map((highScore, index) => (
+              <div style={{ fontSize: 28 - index * 2 + "px" }}>
+                <div
+                  style={{ display: "flex", justifyContent: "space-between" }}
+                >
+                  <div style={{ marginRight: "24px" }}>{highScore.name}</div>
+                  <div>
+                    <b>{numberToCurrency(Number(highScore.score))}</b>
+                  </div>
+                </div>
+              </div>
+            ))}
+        </div>
+      </div>
     </div>
   );
 }
