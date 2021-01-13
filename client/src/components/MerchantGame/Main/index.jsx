@@ -50,9 +50,61 @@ export default function Main() {
       }}
     >
       <div>
-        <div style={{ display: "flex", justifyContent: "space-evenly" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-evenly",
+            alignItems: "center",
+            flexWrap: "wrap",
+          }}
+        >
           <h2>Week {state.round}</h2>
           <h2>Bank: {numberToCurrency(state.bankAmount)}</h2>
+          {state.round < AMOUNT_OF_ROUNDS ? (
+            <Button
+              primary
+              style={{ fontSize: "16px", height: "40px" }}
+              onClick={() => {
+                dispatch({ type: "INCREMENT_ROUND" });
+              }}
+            >
+              Next Week {">"}
+            </Button>
+          ) : (
+            <Popup
+              trigger={<Button danger>Game Over (Click for stats)</Button>}
+              modal
+              position="right center"
+            >
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  padding: "32px",
+                }}
+              >
+                <h2>Game Over</h2>
+                <div
+                  style={{
+                    marginBottom: "16px",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <label>Name</label>
+                  <input
+                    value={userName}
+                    style={{ padding: "5px" }}
+                    onChange={(e) => setUserName(e.target.value)}
+                    type="text"
+                  />
+                </div>
+                <Button primary onClick={handleSaveScore}>
+                  See Stats
+                </Button>
+              </div>
+            </Popup>
+          )}
         </div>
         <div style={{ display: "flex", flexWrap: "wrap" }}>
           {state.locations.map((location) => {
@@ -204,59 +256,6 @@ export default function Main() {
               </div>
             );
           })}
-        </div>
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginTop: "8px",
-          }}
-        >
-          {state.round < AMOUNT_OF_ROUNDS ? (
-            <Button
-              primary
-              style={{ fontSize: "16px" }}
-              onClick={() => {
-                dispatch({ type: "INCREMENT_ROUND" });
-              }}
-            >
-              Next Week {">"}
-            </Button>
-          ) : (
-            <Popup
-              trigger={<Button danger>Game Over (Click for stats)</Button>}
-              modal
-              position="right center"
-            >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  padding: "32px",
-                }}
-              >
-                <h2>Game Over</h2>
-                <div
-                  style={{
-                    marginBottom: "16px",
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <label>Name</label>
-                  <input
-                    value={userName}
-                    onChange={(e) => setUserName(e.target.value)}
-                    type="text"
-                  />
-                </div>
-                <Button primary onClick={handleSaveScore}>
-                  See Stats
-                </Button>
-              </div>
-            </Popup>
-          )}
         </div>
       </div>
     </div>
