@@ -4,6 +4,7 @@ import Toggle from "react-toggle";
 import ReactTooltip from "react-tooltip";
 
 import { sharedFonts, screenSizeBreakPoints } from "../../style/variables";
+import CreateBook from "./CreateBook";
 import BookCard from "./BookCard";
 import { data, rankTypes } from "./data";
 import RankIcon from "./RankIcon";
@@ -59,9 +60,7 @@ export default function BookRatings() {
       setBooksData(resultJson ? resultJson.Items : []);
     })();
   }, []);
-  console.log(booksData);
   const filteredData = applyFilters(booksData, state);
-  console.log(filteredData);
   return (
     <div
       style={{
@@ -70,6 +69,7 @@ export default function BookRatings() {
         flexDirection: "column",
       }}
     >
+      <CreateBook />
       <div>
         <h1>My Book List</h1>
       </div>
