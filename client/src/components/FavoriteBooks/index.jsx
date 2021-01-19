@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import "react-toggle/style.css";
 import Toggle from "react-toggle";
 import ReactTooltip from "react-tooltip";
@@ -38,7 +38,7 @@ const applyFilters = (data, state) => {
     // TODO: this is not the greatest filtering. Improve!
     let keepItem = false;
     Object.entries(state).map(([key, value]) => {
-      if (item.rank === key && value) keepItem = true;
+      if (rankTypes[item.rank] === key && value) keepItem = true;
       return null;
     });
     return keepItem;
@@ -46,11 +46,22 @@ const applyFilters = (data, state) => {
 };
 
 export default function BookRatings() {
-  const [state, dispatch] = React.useReducer(filtersReducer, initialFilters);
+  const [state, dispatch] = useReducer(filtersReducer, initialFilters);
+  const [booksData, setBooksData] = useState([]);
   const isMobileScreen = useMediaQuery(screenSizeBreakPoints.small);
 
-  const filteredData = applyFilters(data, state);
-
+  useEffect(() => {
+    (async () => {
+      const result = await fetch(
+        "https://nsu1exvweg.execute-api.us-east-2.amazonaws.com/default/favoriteBookList"
+      );
+      const resultJson = await result.json();
+      setBooksData(resultJson ? resultJson.Items : []);
+    })();
+  }, []);
+  console.log(booksData);
+  const filteredData = applyFilters(booksData, state);
+  console.log(filteredData);
   return (
     <div
       style={{
@@ -97,7 +108,7 @@ export default function BookRatings() {
                 }
               />
               <label style={{ marginLeft: "8px" }} htmlFor="testToggle">
-                <RankIcon rank={value} />
+                <RankIcon rank={key} />
               </label>
             </div>
           );
