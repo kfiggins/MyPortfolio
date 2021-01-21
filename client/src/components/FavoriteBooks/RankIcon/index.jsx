@@ -4,7 +4,7 @@ import { sharedFonts } from "../../../style/variables";
 
 const getRankIconColor = (rank) => {
   if (!rank) return undefined;
-  switch (rank) {
+  switch (rankTypes[rank]) {
     case rankTypes.diamond:
       return "#b9f2ff";
     case rankTypes.gold:

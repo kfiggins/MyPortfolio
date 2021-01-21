@@ -1,6 +1,7 @@
 import React from "react";
 import { sharedFonts, sharedColors } from "../../../style/variables";
 import RankIcon from "../RankIcon";
+import AmazonImage from "../../shared/AmazonImage";
 
 const bookDescription = (description) => {
   return (
@@ -71,7 +72,11 @@ export default function BookCard({ book, isMobileScreen }) {
               width: "100%",
             }}
           >
-            {book.image}
+            <AmazonImage
+              aLink={book.amazonImageLink}
+              nestedImageSrc={book.amazonNestedImageSrc}
+              bottomImageSrc={book.amazonBottomImageSrc}
+            />
           </div>
           {bookDescription(book.description)}
           <div
@@ -91,7 +96,13 @@ export default function BookCard({ book, isMobileScreen }) {
       {!isMobileScreen && (
         <>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
-            <div style={{ padding: "8px" }}>{book.image}</div>
+            <div style={{ padding: "8px" }}>
+              <AmazonImage
+                aLink={book.amazonImageLink}
+                nestedImageSrc={book.amazonNestedImageSrc}
+                bottomImageSrc={book.amazonBottomImageSrc}
+              />
+            </div>
             <div>
               <div style={{ ...sharedFonts.cardTitle, padding: "8px" }}>
                 {book.title}
