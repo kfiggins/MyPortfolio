@@ -19,7 +19,6 @@ const filtersReducer = (state, action) => {
       break;
   }
 };
-//TODO: Wire up new GET endpoint https://nsu1exvweg.execute-api.us-east-2.amazonaws.com/default/favoriteBookList
 
 //TODO: combine these two objects into rank types. Change from string into Config
 const initialFilters = {
