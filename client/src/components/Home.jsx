@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import profilePic from "../assets/kfiggins3.jpg";
+import profilePic from "../assets/kfiggins_bw.png";
 import { sharedColors } from "../style/variables";
 
 const Wrapper = styled.div`
@@ -46,7 +46,7 @@ export default function Home() {
         <h1 style={{ margin: "30px 0" }}>Kyler Figgins</h1>
       </Header>
       <Body>
-        <p>Full-Stack React Developer who likes clean sites</p>
+        <p>Software Engineer focused on leveling up others</p>
       </Body>
       <SocialIcons>
         <a

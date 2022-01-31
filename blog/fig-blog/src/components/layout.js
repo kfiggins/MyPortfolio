@@ -59,7 +59,7 @@ const Layout = ({ location, title, children }) => {
       <header>{header}</header>
       <main>{children}</main>
       <footer>
-        © {new Date().getFullYear()}, Fig Tree Productions
+        © {new Date().getFullYear()}, One byte at a time - kfiggins
       </footer>
     </div>
   )
