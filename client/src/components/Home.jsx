@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import profilePic from "../assets/kfiggins3.jpg";
+import profilePic from "../assets/avatar.png";
 import { sharedColors } from "../style/variables";
 
 const Wrapper = styled.div`
