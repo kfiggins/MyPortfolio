@@ -3,7 +3,7 @@ module.exports = {
     title: `One byte at a time`,
     author: {
       name: `Kyler Figgins`,
-      summary: `who is a father of 3, husband, lead software engineer, focused on building quality software and learning something new one byte at a time.`,
+      summary: `who is a father of 4, husband, partner and software engineer at The Architects, focused on building quality software and learning something new one byte at a time.`,
     },
     description: `A blend of software, boardgames, books and randoms`,
     siteUrl: `https://gatsby-starter-blog-demo.netlify.app/`,
